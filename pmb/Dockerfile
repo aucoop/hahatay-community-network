@@ -1,5 +1,6 @@
 FROM debian:jessie
 
+# Avoid warnings by switching to noninteractive.
 ENV DEBIAN_FRONTEND noninteractive
 
 ADD http://ftp.indexdata.dk/debian/indexdata.asc /root/
