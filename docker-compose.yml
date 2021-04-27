@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 # docker-compose.yml
 version: '3'
 
@@ -10,3 +11,51 @@ services:
      - .:/code
   redis:
     image: redis
+=======
+# Use root/example as user/password credentials
+version: '3.5'
+
+services:
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: pmb
+    ports:
+      - 3306:3306
+    networks:
+      - test
+    volumes:
+      - pmb_db:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8180:8080
+    networks:
+      - test
+
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:80
+    networks:
+      - test
+    volumes:
+      - pmb_www:/var/www/html
+    environment:
+      PMB: ${PMB}
+      PMB_SHA: ${PMB_SHA}
+
+networks:
+  test:
+
+volumes:
+  pmb_db:
+  pmb_www:
+>>>>>>> Stashed changes
