@@ -1,7 +1,3 @@
-<<<<<<< Updated upstream
-# self-hosted-docker-server
-A dockerized self hosted server
-=======
 # A Docker-Based Intranet 
 
 ## Before starting
@@ -79,4 +75,3 @@ To do so open the `terminal` (`terminal` can be opened with `Ctrl+Alt+T` shortcu
 ## Teamviewer
 
 Download the `.deb` file from the teamviwer website and then install it by `sudo dpkg -i *.deb`.
->>>>>>> Stashed changes
