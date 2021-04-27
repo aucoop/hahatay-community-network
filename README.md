@@ -22,26 +22,47 @@ sudo usermod -aG docker $(whoami)
 
 ## PMB
 
-First time, pull the image:
+[PMB software](https://www.sigb.net/index.php?lvl=cmspage&pageid=6&id_rubrique=220&opac_view=1) with Docker containers.
 
-```source
-docker pull jperon/pmb
+### Introduction
+
+This project contains a docker-compose file to test quickly PMB software. It could be
+interesting to test it before installing it on a server.
+
+### How to
+
+```bash
+docker-compose up -d
 ```
 
-Then run
+It will start 3 services :
+* the webserver
+* the db engine 
+* one to connect to the db
 
-```source
-docker run --restart=always --name pmb -v pmb_data:/var/lib/mysql -v pmb_cfg:/etc/pmb -p 8080:80 -d jperon/pmb
+It could be long the first time (depending on your internet speeed). Check if
+all services are okay with:
+
+```bash
+docker-compose ps
 ```
 
-For the first time, we need to go to http://localhost:8080/pmb/tables/install.php and configure the characteristics of the PMB. Reffer to the documentation for that.
+Normally all services are "up".
 
-The database credentials are:
+## Try PMB
 
-nom d'utilisateur : `admin`
-mot de passe : `admin`
+The Docker exposed port is 8080, so in your browser go to
+"http://localhost:8080/pmb/tables/install.php" and it will ask you to install pmb.
+The information are :
+* db host: db
+* db name: pmb
+* db root password : password
 
-All the stuff explained above, should only be done the first time that pmb is installed. After that, always you should enter to http://localhost:8080/pmb/
+After that, PMB will be available at "http://localhost:8080/pmb".
+
+## Change version of PMB
+
+If you want to test another version of PMB, change the values in the .env file.
 
 ## Apache
 
