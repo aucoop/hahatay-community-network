@@ -25,6 +25,7 @@ services:
       - test
 
   web:
+    restart: always
     build: 
       context: .
       dockerfile: Dockerfile
