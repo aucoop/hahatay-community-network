@@ -1,0 +1,26 @@
+OC.L10N.register(
+    "mail",
+    {
+    "Name" : "ئاتى",
+    "Password" : "ئىم",
+    "None" : "يوق",
+    "Save" : "ساقلا",
+    "Connect" : "باغلان",
+    "Send" : "يوللا",
+    "Select" : "Select",
+    "Favorites" : "يىغقۇچ",
+    "Other" : "باشقا",
+    "Reply" : "جاۋاب قايتۇر",
+    "Move" : "Move",
+    "Settings" : "تەڭشەكلەر",
+    "Cancel" : "ۋاز كەچ",
+    "Delete" : "ئۆچۈر",
+    "General" : "ئادەتتىكى",
+    "User" : "User",
+    "Host" : "باش ئاپپارات",
+    "Port" : "ئېغىز",
+    "Search" : "Search",
+    "Refresh" : "يېڭىلا",
+    "All" : "ھەممىسى"
+},
+"nplurals=2; plural=(n != 1);");

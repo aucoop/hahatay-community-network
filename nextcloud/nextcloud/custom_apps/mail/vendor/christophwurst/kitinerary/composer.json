@@ -1,0 +1,20 @@
+{
+    "name": "christophwurst/kitinerary",
+    "description": "KItinerary adapter",
+    "type": "library",
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Christoph Wurst",
+            "email": "christoph@winzerhof-wurst.at"
+        }
+    ],
+    "require": {
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ChristophWurst\\KItinerary\\": "/src"
+        }
+    }
+}

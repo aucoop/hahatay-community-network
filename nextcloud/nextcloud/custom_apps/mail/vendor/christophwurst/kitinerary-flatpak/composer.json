@@ -1,0 +1,21 @@
+{
+    "name": "christophwurst/kitinerary-flatpak",
+    "description": "KItinerary Flatpak binding",
+    "type": "library",
+    "license": "AGPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Christoph Wurst",
+            "email": "christoph@winzerhof-wurst.at"
+        }
+    ],
+    "require": {
+        "christophwurst/kitinerary": "^0.2",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "ChristophWurst\\KItinerary\\Flatpak\\": "/src"
+        }
+    }
+}

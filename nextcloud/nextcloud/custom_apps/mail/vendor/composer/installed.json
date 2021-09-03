@@ -1,0 +1,2359 @@
+[
+    {
+        "name": "amphp/amp",
+        "version": "v2.5.2",
+        "version_normalized": "2.5.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/amphp/amp.git",
+            "reference": "efca2b32a7580087adb8aabbff6be1dc1bb924a9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/amphp/amp/zipball/efca2b32a7580087adb8aabbff6be1dc1bb924a9",
+            "reference": "efca2b32a7580087adb8aabbff6be1dc1bb924a9",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7"
+        },
+        "require-dev": {
+            "amphp/php-cs-fixer-config": "dev-master",
+            "amphp/phpunit-util": "^1",
+            "ext-json": "*",
+            "jetbrains/phpstorm-stubs": "^2019.3",
+            "phpunit/phpunit": "^6.0.9 | ^7",
+            "psalm/phar": "^3.11@dev",
+            "react/promise": "^2"
+        },
+        "time": "2021-01-10T17:06:37+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Amp\\": "lib"
+            },
+            "files": [
+                "lib/functions.php",
+                "lib/Internal/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Daniel Lowrey",
+                "email": "rdlowrey@php.net"
+            },
+            {
+                "name": "Aaron Piotrowski",
+                "email": "aaron@trowski.com"
+            },
+            {
+                "name": "Bob Weinand",
+                "email": "bobwei9@hotmail.com"
+            },
+            {
+                "name": "Niklas Keller",
+                "email": "me@kelunik.com"
+            }
+        ],
+        "description": "A non-blocking concurrency framework for PHP applications.",
+        "homepage": "http://amphp.org/amp",
+        "keywords": [
+            "async",
+            "asynchronous",
+            "awaitable",
+            "concurrency",
+            "event",
+            "event-loop",
+            "future",
+            "non-blocking",
+            "promise"
+        ],
+        "funding": [
+            {
+                "url": "https://github.com/amphp",
+                "type": "github"
+            }
+        ]
+    },
+    {
+        "name": "amphp/byte-stream",
+        "version": "v1.8.1",
+        "version_normalized": "1.8.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/amphp/byte-stream.git",
+            "reference": "acbd8002b3536485c997c4e019206b3f10ca15bd"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/amphp/byte-stream/zipball/acbd8002b3536485c997c4e019206b3f10ca15bd",
+            "reference": "acbd8002b3536485c997c4e019206b3f10ca15bd",
+            "shasum": ""
+        },
+        "require": {
+            "amphp/amp": "^2",
+            "php": ">=7.1"
+        },
+        "require-dev": {
+            "amphp/php-cs-fixer-config": "dev-master",
+            "amphp/phpunit-util": "^1.4",
+            "friendsofphp/php-cs-fixer": "^2.3",
+            "jetbrains/phpstorm-stubs": "^2019.3",
+            "phpunit/phpunit": "^6 || ^7 || ^8",
+            "psalm/phar": "^3.11.4"
+        },
+        "time": "2021-03-30T17:13:30+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Amp\\ByteStream\\": "lib"
+            },
+            "files": [
+                "lib/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Aaron Piotrowski",
+                "email": "aaron@trowski.com"
+            },
+            {
+                "name": "Niklas Keller",
+                "email": "me@kelunik.com"
+            }
+        ],
+        "description": "A stream abstraction to make working with non-blocking I/O simple.",
+        "homepage": "http://amphp.org/byte-stream",
+        "keywords": [
+            "amp",
+            "amphp",
+            "async",
+            "io",
+            "non-blocking",
+            "stream"
+        ],
+        "funding": [
+            {
+                "url": "https://github.com/amphp",
+                "type": "github"
+            }
+        ]
+    },
+    {
+        "name": "amphp/parallel",
+        "version": "v1.4.0",
+        "version_normalized": "1.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/amphp/parallel.git",
+            "reference": "2c1039bf7ca137eae4d954b14c09a7535d7d4e1c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/amphp/parallel/zipball/2c1039bf7ca137eae4d954b14c09a7535d7d4e1c",
+            "reference": "2c1039bf7ca137eae4d954b14c09a7535d7d4e1c",
+            "shasum": ""
+        },
+        "require": {
+            "amphp/amp": "^2",
+            "amphp/byte-stream": "^1.6.1",
+            "amphp/parser": "^1",
+            "amphp/process": "^1",
+            "amphp/serialization": "^1",
+            "amphp/sync": "^1.0.1",
+            "php": ">=7.1"
+        },
+        "require-dev": {
+            "amphp/php-cs-fixer-config": "dev-master",
+            "amphp/phpunit-util": "^1.1",
+            "phpunit/phpunit": "^8 || ^7"
+        },
+        "time": "2020-04-27T15:12:37+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Amp\\Parallel\\": "lib"
+            },
+            "files": [
+                "lib/Context/functions.php",
+                "lib/Sync/functions.php",
+                "lib/Worker/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Aaron Piotrowski",
+                "email": "aaron@trowski.com"
+            },
+            {
+                "name": "Stephen Coakley",
+                "email": "me@stephencoakley.com"
+            }
+        ],
+        "description": "Parallel processing component for Amp.",
+        "homepage": "https://github.com/amphp/parallel",
+        "keywords": [
+            "async",
+            "asynchronous",
+            "concurrent",
+            "multi-processing",
+            "multi-threading"
+        ]
+    },
+    {
+        "name": "amphp/parser",
+        "version": "v1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/amphp/parser.git",
+            "reference": "f83e68f03d5b8e8e0365b8792985a7f341c57ae1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/amphp/parser/zipball/f83e68f03d5b8e8e0365b8792985a7f341c57ae1",
+            "reference": "f83e68f03d5b8e8e0365b8792985a7f341c57ae1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7"
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "^2.3",
+            "phpunit/phpunit": "^6"
+        },
+        "time": "2017-06-06T05:29:10+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Amp\\Parser\\": "lib"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Niklas Keller",
+                "email": "me@kelunik.com"
+            },
+            {
+                "name": "Aaron Piotrowski",
+                "email": "aaron@trowski.com"
+            }
+        ],
+        "description": "A generator parser to make streaming parsers simple.",
+        "homepage": "https://github.com/amphp/parser",
+        "keywords": [
+            "async",
+            "non-blocking",
+            "parser",
+            "stream"
+        ]
+    },
+    {
+        "name": "amphp/process",
+        "version": "v1.1.1",
+        "version_normalized": "1.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/amphp/process.git",
+            "reference": "b88c6aef75c0b22f6f021141dd2d5e7c5db4c124"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/amphp/process/zipball/b88c6aef75c0b22f6f021141dd2d5e7c5db4c124",
+            "reference": "b88c6aef75c0b22f6f021141dd2d5e7c5db4c124",
+            "shasum": ""
+        },
+        "require": {
+            "amphp/amp": "^2",
+            "amphp/byte-stream": "^1.4",
+            "php": ">=7"
+        },
+        "require-dev": {
+            "amphp/php-cs-fixer-config": "dev-master",
+            "amphp/phpunit-util": "^1",
+            "phpunit/phpunit": "^6"
+        },
+        "time": "2021-03-30T20:04:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Amp\\Process\\": "lib"
+            },
+            "files": [
+                "lib/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Bob Weinand",
+                "email": "bobwei9@hotmail.com"
+            },
+            {
+                "name": "Aaron Piotrowski",
+                "email": "aaron@trowski.com"
+            },
+            {
+                "name": "Niklas Keller",
+                "email": "me@kelunik.com"
+            }
+        ],
+        "description": "Asynchronous process manager.",
+        "homepage": "https://github.com/amphp/process",
+        "funding": [
+            {
+                "url": "https://github.com/amphp",
+                "type": "github"
+            }
+        ]
+    },
+    {
+        "name": "amphp/serialization",
+        "version": "v1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/amphp/serialization.git",
+            "reference": "693e77b2fb0b266c3c7d622317f881de44ae94a1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/amphp/serialization/zipball/693e77b2fb0b266c3c7d622317f881de44ae94a1",
+            "reference": "693e77b2fb0b266c3c7d622317f881de44ae94a1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.1"
+        },
+        "require-dev": {
+            "amphp/php-cs-fixer-config": "dev-master",
+            "phpunit/phpunit": "^9 || ^8 || ^7"
+        },
+        "time": "2020-03-25T21:39:07+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Amp\\Serialization\\": "src"
+            },
+            "files": [
+                "src/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Aaron Piotrowski",
+                "email": "aaron@trowski.com"
+            },
+            {
+                "name": "Niklas Keller",
+                "email": "me@kelunik.com"
+            }
+        ],
+        "description": "Serialization tools for IPC and data storage in PHP.",
+        "homepage": "https://github.com/amphp/serialization",
+        "keywords": [
+            "async",
+            "asynchronous",
+            "serialization",
+            "serialize"
+        ]
+    },
+    {
+        "name": "amphp/sync",
+        "version": "v1.4.0",
+        "version_normalized": "1.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/amphp/sync.git",
+            "reference": "613047ac54c025aa800a9cde5b05c3add7327ed4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/amphp/sync/zipball/613047ac54c025aa800a9cde5b05c3add7327ed4",
+            "reference": "613047ac54c025aa800a9cde5b05c3add7327ed4",
+            "shasum": ""
+        },
+        "require": {
+            "amphp/amp": "^2.2",
+            "php": ">=7.1"
+        },
+        "require-dev": {
+            "amphp/php-cs-fixer-config": "dev-master",
+            "amphp/phpunit-util": "^1.1",
+            "phpunit/phpunit": "^9 || ^8 || ^7"
+        },
+        "time": "2020-05-07T18:57:50+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Amp\\Sync\\": "src"
+            },
+            "files": [
+                "src/functions.php",
+                "src/ConcurrentIterator/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Aaron Piotrowski",
+                "email": "aaron@trowski.com"
+            },
+            {
+                "name": "Stephen Coakley",
+                "email": "me@stephencoakley.com"
+            }
+        ],
+        "description": "Mutex, Semaphore, and other synchronization tools for Amp.",
+        "homepage": "https://github.com/amphp/sync",
+        "keywords": [
+            "async",
+            "asynchronous",
+            "mutex",
+            "semaphore",
+            "synchronization"
+        ]
+    },
+    {
+        "name": "arthurhoaro/favicon",
+        "version": "v1.3.2",
+        "version_normalized": "1.3.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ArthurHoaro/favicon.git",
+            "reference": "ed3c3f6fd9ab39b28eb86567c4b0a0583ca264a6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ArthurHoaro/favicon/zipball/ed3c3f6fd9ab39b28eb86567c4b0a0583ca264a6",
+            "reference": "ed3c3f6fd9ab39b28eb86567c4b0a0583ca264a6",
+            "shasum": ""
+        },
+        "require": {
+            "ext-dom": "*",
+            "ext-fileinfo": "*",
+            "php": ">=5.6"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.8",
+            "squizlabs/php_codesniffer": "^3.5",
+            "weew/helpers-filesystem": "~1.0"
+        },
+        "time": "2021-02-03T12:26:59+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Favicon\\": "src/Favicon/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "Apache-2.0"
+        ],
+        "authors": [
+            {
+                "name": "Chris Shiflett",
+                "homepage": "http://shiflett.org/"
+            },
+            {
+                "name": "Arthur Hoaro",
+                "homepage": "http://hoa.ro"
+            }
+        ],
+        "description": "PHP Library used to discover favicon from given URL",
+        "homepage": "https://github.com/ArthurHoaro/favicon",
+        "keywords": [
+            "favicon",
+            "finder",
+            "icon"
+        ]
+    },
+    {
+        "name": "bamarni/composer-bin-plugin",
+        "version": "1.4.1",
+        "version_normalized": "1.4.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/bamarni/composer-bin-plugin.git",
+            "reference": "9329fb0fbe29e0e1b2db8f4639a193e4f5406225"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/bamarni/composer-bin-plugin/zipball/9329fb0fbe29e0e1b2db8f4639a193e4f5406225",
+            "reference": "9329fb0fbe29e0e1b2db8f4639a193e4f5406225",
+            "shasum": ""
+        },
+        "require": {
+            "composer-plugin-api": "^1.0 || ^2.0",
+            "php": "^5.5.9 || ^7.0 || ^8.0"
+        },
+        "require-dev": {
+            "composer/composer": "^1.0 || ^2.0",
+            "symfony/console": "^2.5 || ^3.0 || ^4.0"
+        },
+        "time": "2020-05-03T08:27:20+00:00",
+        "type": "composer-plugin",
+        "extra": {
+            "class": "Bamarni\\Composer\\Bin\\Plugin"
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Bamarni\\Composer\\Bin\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "description": "No conflicts for your bin dependencies",
+        "keywords": [
+            "composer",
+            "conflict",
+            "dependency",
+            "executable",
+            "isolation",
+            "tool"
+        ]
+    },
+    {
+        "name": "cerdic/css-tidy",
+        "version": "v1.7.3",
+        "version_normalized": "1.7.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Cerdic/CSSTidy.git",
+            "reference": "919411b2c16ab985f7c61e0d9bb6c35d080f6cf6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Cerdic/CSSTidy/zipball/919411b2c16ab985f7c61e0d9bb6c35d080f6cf6",
+            "reference": "919411b2c16ab985f7c61e0d9bb6c35d080f6cf6",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.4.0 || ^7"
+        },
+        "require-dev": {
+            "pear/text_diff": "^1.2",
+            "simpletest/simpletest": "^1.1"
+        },
+        "time": "2020-11-03T13:08:18+00:00",
+        "bin": [
+            "bin/pcsstidy"
+        ],
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "class.csstidy_optimise.php",
+                "class.csstidy_print.php",
+                "class.csstidy.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-2.1-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Cédric MORIN",
+                "email": "changeme@mailinator.com"
+            }
+        ],
+        "description": "CSSTidy is a CSS minifier"
+    },
+    {
+        "name": "christophwurst/kitinerary",
+        "version": "0.2.1",
+        "version_normalized": "0.2.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ChristophWurst/kitinerary.git",
+            "reference": "d2adb02b6d46b36571dc3c5127a8360ba2d5b418"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ChristophWurst/kitinerary/zipball/d2adb02b6d46b36571dc3c5127a8360ba2d5b418",
+            "reference": "d2adb02b6d46b36571dc3c5127a8360ba2d5b418",
+            "shasum": ""
+        },
+        "require": {
+            "ext-json": "*"
+        },
+        "time": "2020-01-13T21:39:22+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "ChristophWurst\\KItinerary\\": "/src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "AGPL-3.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Christoph Wurst",
+                "email": "christoph@winzerhof-wurst.at"
+            }
+        ],
+        "description": "KItinerary adapter"
+    },
+    {
+        "name": "christophwurst/kitinerary-bin",
+        "version": "0.2.3",
+        "version_normalized": "0.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ChristophWurst/kitinerary-bin.git",
+            "reference": "eaafa040b404651cb4ab75a2d7a53c71b55d2395"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ChristophWurst/kitinerary-bin/zipball/eaafa040b404651cb4ab75a2d7a53c71b55d2395",
+            "reference": "eaafa040b404651cb4ab75a2d7a53c71b55d2395",
+            "shasum": ""
+        },
+        "require": {
+            "christophwurst/kitinerary": "^0.2.1",
+            "ext-json": "*",
+            "php": "^7.1",
+            "psr/log": "^1.1"
+        },
+        "time": "2020-01-13T21:43:49+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "ChristophWurst\\KItinerary\\Bin\\": "/src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Christoph Wurst",
+                "email": "christoph@winzerhof-wurst.at"
+            }
+        ],
+        "description": "KItinerary binary executable"
+    },
+    {
+        "name": "christophwurst/kitinerary-flatpak",
+        "version": "0.2.2",
+        "version_normalized": "0.2.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ChristophWurst/kitinerary-flatpak.git",
+            "reference": "2f0254f31a6b3d88f7a8ac5de25c580820401d37"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ChristophWurst/kitinerary-flatpak/zipball/2f0254f31a6b3d88f7a8ac5de25c580820401d37",
+            "reference": "2f0254f31a6b3d88f7a8ac5de25c580820401d37",
+            "shasum": ""
+        },
+        "require": {
+            "christophwurst/kitinerary": "^0.2",
+            "ext-json": "*"
+        },
+        "time": "2020-01-13T21:42:51+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "ChristophWurst\\KItinerary\\Flatpak\\": "/src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "AGPL-3.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Christoph Wurst",
+                "email": "christoph@winzerhof-wurst.at"
+            }
+        ],
+        "description": "KItinerary Flatpak binding"
+    },
+    {
+        "name": "christophwurst/kitinerary-sys",
+        "version": "v0.1.0",
+        "version_normalized": "0.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ChristophWurst/kitinerary-sys.git",
+            "reference": "db1c61703e94746b95543f14c5a09067faba6f92"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ChristophWurst/kitinerary-sys/zipball/db1c61703e94746b95543f14c5a09067faba6f92",
+            "reference": "db1c61703e94746b95543f14c5a09067faba6f92",
+            "shasum": ""
+        },
+        "require": {
+            "christophwurst/kitinerary": "^0.2.1",
+            "ext-json": "*",
+            "php": "^7.1",
+            "psr/log": "^1.1"
+        },
+        "time": "2020-05-15T14:29:54+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "ChristophWurst\\KItinerary\\Sys\\": "/src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-3.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Christoph Wurst",
+                "email": "christoph@winzerhof-wurst.at"
+            }
+        ],
+        "description": "KItinerary binding for the system package"
+    },
+    {
+        "name": "ezyang/htmlpurifier",
+        "version": "v4.13.0",
+        "version_normalized": "4.13.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ezyang/htmlpurifier.git",
+            "reference": "08e27c97e4c6ed02f37c5b2b20488046c8d90d75"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/08e27c97e4c6ed02f37c5b2b20488046c8d90d75",
+            "reference": "08e27c97e4c6ed02f37c5b2b20488046c8d90d75",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2"
+        },
+        "require-dev": {
+            "simpletest/simpletest": "dev-master#72de02a7b80c6bb8864ef9bf66d41d2f58f826bd"
+        },
+        "time": "2020-06-29T00:56:53+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "HTMLPurifier": "library/"
+            },
+            "files": [
+                "library/HTMLPurifier.composer.php"
+            ],
+            "exclude-from-classmap": [
+                "/library/HTMLPurifier/Language/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "LGPL-2.1-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Edward Z. Yang",
+                "email": "admin@htmlpurifier.org",
+                "homepage": "http://ezyang.com"
+            }
+        ],
+        "description": "Standards compliant HTML filter written in PHP",
+        "homepage": "http://htmlpurifier.org/",
+        "keywords": [
+            "html"
+        ]
+    },
+    {
+        "name": "gravatarphp/gravatar",
+        "version": "v2.0.0",
+        "version_normalized": "2.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/gravatarphp/gravatar.git",
+            "reference": "54a5d48b4564ec9f1db8a498ad23d500ab83c063"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/gravatarphp/gravatar/zipball/54a5d48b4564ec9f1db8a498ad23d500ab83c063",
+            "reference": "54a5d48b4564ec9f1db8a498ad23d500ab83c063",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.1"
+        },
+        "require-dev": {
+            "phpspec/phpspec": "^5.1"
+        },
+        "time": "2019-01-08T21:43:01+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Gravatar\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Márk Sági-Kazár",
+                "email": "mark.sagikazar@gmail.com"
+            }
+        ],
+        "description": "Gravatar URL builder which is most commonly called as a Gravatar library",
+        "homepage": "http://gravatarphp.com",
+        "keywords": [
+            "avatar",
+            "gravatar",
+            "image",
+            "profile"
+        ]
+    },
+    {
+        "name": "league/flysystem",
+        "version": "2.0.8",
+        "version_normalized": "2.0.8.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/thephpleague/flysystem.git",
+            "reference": "82ad1e9a11745dba58775de2e8f47600b0a3331d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/82ad1e9a11745dba58775de2e8f47600b0a3331d",
+            "reference": "82ad1e9a11745dba58775de2e8f47600b0a3331d",
+            "shasum": ""
+        },
+        "require": {
+            "ext-json": "*",
+            "league/mime-type-detection": "^1.0.0",
+            "php": "^7.2 || ^8.0"
+        },
+        "conflict": {
+            "guzzlehttp/ringphp": "<1.1.1"
+        },
+        "require-dev": {
+            "async-aws/s3": "^1.5",
+            "async-aws/simple-s3": "^1.0",
+            "aws/aws-sdk-php": "^3.132.4",
+            "composer/semver": "^3.0",
+            "ext-fileinfo": "*",
+            "friendsofphp/php-cs-fixer": "^2.16",
+            "google/cloud-storage": "^1.23",
+            "phpseclib/phpseclib": "^2.0",
+            "phpstan/phpstan": "^0.12.26",
+            "phpunit/phpunit": "^8.5 || ^9.4"
+        },
+        "time": "2021-05-15T19:53:59+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "League\\Flysystem\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Frank de Jonge",
+                "email": "info@frankdejonge.nl"
+            }
+        ],
+        "description": "File storage abstraction for PHP",
+        "keywords": [
+            "WebDAV",
+            "aws",
+            "cloud",
+            "file",
+            "files",
+            "filesystem",
+            "filesystems",
+            "ftp",
+            "s3",
+            "sftp",
+            "storage"
+        ],
+        "funding": [
+            {
+                "url": "https://offset.earth/frankdejonge",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/frankdejonge",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                "type": "tidelift"
+            }
+        ]
+    },
+    {
+        "name": "league/mime-type-detection",
+        "version": "1.7.0",
+        "version_normalized": "1.7.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/thephpleague/mime-type-detection.git",
+            "reference": "3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3",
+            "reference": "3b9dff8aaf7323590c1d2e443db701eb1f9aa0d3",
+            "shasum": ""
+        },
+        "require": {
+            "ext-fileinfo": "*",
+            "php": "^7.2 || ^8.0"
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "^2.18",
+            "phpstan/phpstan": "^0.12.68",
+            "phpunit/phpunit": "^8.5.8 || ^9.3"
+        },
+        "time": "2021-01-18T20:58:21+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "League\\MimeTypeDetection\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Frank de Jonge",
+                "email": "info@frankdejonge.nl"
+            }
+        ],
+        "description": "Mime-type detection for Flysystem",
+        "funding": [
+            {
+                "url": "https://github.com/frankdejonge",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                "type": "tidelift"
+            }
+        ]
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Crypt_Blowfish",
+        "version": "1.1.3",
+        "version_normalized": "1.1.3.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Crypt_Blowfish-1.1.3.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_support": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_crypt_blowfish": "== 1.1.3.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "A library that provides blowfish encryption/decryption for PHP string data."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Date",
+        "version": "2.4.1",
+        "version_normalized": "2.4.1.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Date-2.4.1.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_nls": "<3.0.0.0",
+            "pear-pear.horde.org/horde_translation": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_date": "== 2.4.1.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "Package for creating and manipulating dates."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Exception",
+        "version": "2.0.8",
+        "version_normalized": "2.0.8.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Exception-2.0.8.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_translation": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_exception": "== 2.0.8.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "This class provides the default exception handlers for the Horde Application Framework."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Idna",
+        "version": "1.1.2",
+        "version_normalized": "1.1.2.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Idna-1.1.2.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_idna": "== 1.1.2.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "BSD-2-Clause"
+        ],
+        "description": "A library that wraps various backends providing IDNA (Internationalized Domain Names in Applications) support."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Imap_Client",
+        "version": "2.30.3",
+        "version_normalized": "2.30.3.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Imap_Client-2.30.3.tgz"
+        },
+        "require": {
+            "ext-hash": "*",
+            "ext-json": "*",
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_mail": "<3.0.0.0",
+            "pear-pear.horde.org/horde_mime": "<3.0.0.0",
+            "pear-pear.horde.org/horde_secret": "<3.0.0.0",
+            "pear-pear.horde.org/horde_socket_client": "<3.0.0.0",
+            "pear-pear.horde.org/horde_stream": "<2.0.0.0",
+            "pear-pear.horde.org/horde_stream_filter": "<3.0.0.0",
+            "pear-pear.horde.org/horde_translation": "<3.0.0.0",
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_imap_client": "== 2.30.3.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "A library to access IMAP4rev1 (RFC 3501) mail servers. Also supports connections to POP3 (STD 53/RFC 1939)."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_ListHeaders",
+        "version": "1.2.5",
+        "version_normalized": "1.2.5.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_ListHeaders-1.2.5.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_mail": "<3.0.0.0",
+            "pear-pear.horde.org/horde_translation": "<3.0.0.0",
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_listheaders": "== 1.2.5.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "The Horde_ListHeaders library parses Mailing List Headers as defined in RFC 2369 & RFC 2919."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Mail",
+        "version": "2.6.5",
+        "version_normalized": "2.6.5.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Mail-2.6.5.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_idna": "<2.0.0.0",
+            "pear-pear.horde.org/horde_mime": "<3.0.0.0",
+            "pear-pear.horde.org/horde_stream_filter": "<3.0.0.0",
+            "pear-pear.horde.org/horde_translation": "<3.0.0.0",
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_mail": "== 2.6.5.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "BSD-2-Clause"
+        ],
+        "description": "Provides interfaces for sending e-mail messages and parsing e-mail addresses."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_ManageSieve",
+        "version": "1.0.3",
+        "version_normalized": "1.0.3.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_ManageSieve-1.0.3.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_socket_client": "<3.0.0.0",
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": ">=5.4.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_managesieve": "== 1.0.3.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "BSD-2-Clause"
+        ],
+        "description": "A library that implements the ManageSieve protocol (RFC 5804)."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Mime",
+        "version": "2.11.1",
+        "version_normalized": "2.11.1.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Mime-2.11.1.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_listheaders": "<2.0.0.0",
+            "pear-pear.horde.org/horde_mail": "<3.0.0.0",
+            "pear-pear.horde.org/horde_stream": "<2.0.0.0",
+            "pear-pear.horde.org/horde_stream_filter": "<3.0.0.0",
+            "pear-pear.horde.org/horde_support": "<3.0.0.0",
+            "pear-pear.horde.org/horde_text_flowed": "<3.0.0.0",
+            "pear-pear.horde.org/horde_translation": "<3.0.0.0",
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_mime": "== 2.11.1.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "A library that provides methods for dealing with Multipurpose Internet Mail Extensions (MIME) features (RFC 2045/2046/2047)."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Nls",
+        "version": "2.2.1",
+        "version_normalized": "2.2.1.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Nls-2.2.1.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_translation": "<3.0.0.0",
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_nls": "== 2.2.1.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "Common methods for handling language data, timezones, and hostname->country lookups."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Secret",
+        "version": "2.0.6",
+        "version_normalized": "2.0.6.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Secret-2.0.6.tgz"
+        },
+        "require": {
+            "ext-hash": "*",
+            "pear-pear.horde.org/horde_crypt_blowfish": "<2.0.0.0",
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_support": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_secret": "== 2.0.6.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "An API for encrypting and decrypting small pieces of data with the use of a shared key."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Smtp",
+        "version": "1.9.6",
+        "version_normalized": "1.9.6.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Smtp-1.9.6.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_mail": "<3.0.0.0",
+            "pear-pear.horde.org/horde_socket_client": "<3.0.0.0",
+            "pear-pear.horde.org/horde_support": "<3.0.0.0",
+            "pear-pear.horde.org/horde_translation": "<3.0.0.0",
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_smtp": "== 1.9.6.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "A library for connecting to a SMTP (RFC 5321) server to send e-mail messages."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Socket_Client",
+        "version": "2.1.3",
+        "version_normalized": "2.1.3.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Socket_Client-2.1.3.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_socket_client": "== 2.1.3.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "A library that provides an abstract PHP network socket client."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Stream",
+        "version": "1.6.3",
+        "version_normalized": "1.6.3.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Stream-1.6.3.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_stream": "== 1.6.3.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "An object-oriented interface to assist in creating and storing PHP stream resources, and to provide utility methods to access and manipulate the stream contents."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Stream_Filter",
+        "version": "2.0.4",
+        "version_normalized": "2.0.4.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Stream_Filter-2.0.4.tgz"
+        },
+        "require": {
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_stream_filter": "== 2.0.4.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "A collection of various stream filters."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Stream_Wrapper",
+        "version": "2.1.4",
+        "version_normalized": "2.1.4.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Stream_Wrapper-2.1.4.tgz"
+        },
+        "require": {
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_stream_wrapper": "== 2.1.4.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "BSD-2-Clause"
+        ],
+        "description": "A collection of stream wrappers."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Stringprep",
+        "version": "1.0.4",
+        "version_normalized": "1.0.4.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Stringprep-1.0.4.tgz"
+        },
+        "require": {
+            "ext-iconv": "*",
+            "ext-intl": "*",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_stringprep": "== 1.0.4.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-3.0"
+        ],
+        "description": "Horde wrapper around the znerol/php-stringprep package."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Support",
+        "version": "2.2.0",
+        "version_normalized": "2.2.0.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Support-2.2.0.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_stream_wrapper": "<3.0.0.0",
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_support": "== 2.2.0.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "BSD-2-Clause"
+        ],
+        "description": "Support classes not tied to Horde but is used by it. These classes can be used outside of Horde as well."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Text_Filter",
+        "version": "2.3.7",
+        "version_normalized": "2.3.7.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Text_Filter-2.3.7.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_exception": "<3.0.0.0",
+            "pear-pear.horde.org/horde_idna": "<2.0.0.0",
+            "pear-pear.horde.org/horde_secret": "<3.0.0.0",
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_text_filter": "== 2.3.7.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "A library for fitering and converting text."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Text_Flowed",
+        "version": "2.0.4",
+        "version_normalized": "2.0.4.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Text_Flowed-2.0.4.tgz"
+        },
+        "require": {
+            "pear-pear.horde.org/horde_util": "<3.0.0.0",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_text_flowed": "== 2.0.4.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "A library that provides common methods for manipulating text using the encoding described in RFC 3676 ('flowed' text)."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Translation",
+        "version": "2.2.2",
+        "version_normalized": "2.2.2.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Translation-2.2.2.tgz"
+        },
+        "require": {
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_translation": "== 2.2.2.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "Translation wrappers."
+    },
+    {
+        "name": "pear-pear.horde.org/Horde_Util",
+        "version": "2.5.9",
+        "version_normalized": "2.5.9.0",
+        "dist": {
+            "type": "file",
+            "url": "https://pear.horde.org/get/Horde_Util-2.5.9.tgz"
+        },
+        "require": {
+            "ext-dom": "*",
+            "php": "<8.0.0.0"
+        },
+        "replace": {
+            "pear-horde/horde_util": "== 2.5.9.0"
+        },
+        "type": "pear-library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                ""
+            ]
+        },
+        "include-path": [
+            "/"
+        ],
+        "license": [
+            "LGPL-2.1"
+        ],
+        "description": "A library that provides functionality useful for all kind of applications."
+    },
+    {
+        "name": "psr/log",
+        "version": "1.1.4",
+        "version_normalized": "1.1.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/log.git",
+            "reference": "d49695b909c3b7628b6289db5479a1c204601f11"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/d49695b909c3b7628b6289db5479a1c204601f11",
+            "reference": "d49695b909c3b7628b6289db5479a1c204601f11",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "time": "2021-05-03T11:20:27+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Psr\\Log\\": "Psr/Log/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "https://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for logging libraries",
+        "homepage": "https://github.com/php-fig/log",
+        "keywords": [
+            "log",
+            "psr",
+            "psr-3"
+        ]
+    },
+    {
+        "name": "rubix/ml",
+        "version": "0.4.1",
+        "version_normalized": "0.4.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/RubixML/ML.git",
+            "reference": "d34f8aedce1228a8c9eccc52075a06430e2de92b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/RubixML/ML/zipball/d34f8aedce1228a8c9eccc52075a06430e2de92b",
+            "reference": "d34f8aedce1228a8c9eccc52075a06430e2de92b",
+            "shasum": ""
+        },
+        "require": {
+            "amphp/parallel": "^1.3",
+            "ext-json": "*",
+            "league/flysystem": "~2.0.2",
+            "php": ">=7.2",
+            "psr/log": "^1.1",
+            "rubix/tensor": "^2.2",
+            "symfony/polyfill-mbstring": "^1.0",
+            "symfony/polyfill-php73": "^1.20",
+            "symfony/polyfill-php80": "^1.17"
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "2.18.*",
+            "league/flysystem-memory": "^2.0",
+            "phpbench/phpbench": "1.0.0-alpha6",
+            "phpstan/extension-installer": "^1.0",
+            "phpstan/phpstan": "0.12.*",
+            "phpstan/phpstan-phpunit": "0.12.*",
+            "phpunit/phpunit": "8.5.*"
+        },
+        "suggest": {
+            "ext-gd": "For image manipulation",
+            "ext-igbinary": "For binary serialization of persistables",
+            "ext-mbstring": "For fast multibyte string manipulation",
+            "ext-redis": "To persist models to a Redis DB",
+            "ext-svm": "For Support Vector Machine engine (libsvm)",
+            "ext-tensor": "For fast Matrix/Vector computing",
+            "rubix/extras": "For experimental features"
+        },
+        "time": "2021-03-28T01:48:47+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Rubix\\ML\\": "src/"
+            },
+            "files": [
+                "src/constants.php",
+                "src/functions.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Andrew DalPino",
+                "homepage": "https://github.com/andrewdalpino",
+                "role": "Lead Engineer"
+            },
+            {
+                "name": "Contributors",
+                "homepage": "https://github.com/RubixML/ML/graphs/contributors"
+            }
+        ],
+        "description": "A high-level machine learning and deep learning library for the PHP language.",
+        "homepage": "https://rubixml.com",
+        "keywords": [
+            "Algorithm",
+            "Deep learning",
+            "Linear regression",
+            "Neural network",
+            "Rubix",
+            "TF-IDF",
+            "adaboost",
+            "ai",
+            "analytics",
+            "anomaly detection",
+            "artificial intelligence",
+            "cart",
+            "classification",
+            "classifier",
+            "clustering",
+            "cross validation",
+            "data mining",
+            "data science",
+            "dataset",
+            "dbscan",
+            "dimensionality reduction",
+            "ensemble",
+            "estimator",
+            "etl",
+            "feature extraction",
+            "feature importance",
+            "feature selection",
+            "gaussian mixture",
+            "gbm",
+            "gmm",
+            "gradient boost",
+            "grid search",
+            "image recognition",
+            "imputation",
+            "inference",
+            "isolation forest",
+            "k-means",
+            "k-nearest neighbors",
+            "kmeans",
+            "knn",
+            "local outlier factor",
+            "loda",
+            "lof",
+            "logistic regression",
+            "machine learning",
+            "manifold learning",
+            "mean shift",
+            "ml",
+            "mlp",
+            "multilayer perceptron",
+            "naive bayes",
+            "natural language processing",
+            "nearest neighbors",
+            "nlp",
+            "outlier detection",
+            "php",
+            "php ai",
+            "php machine learning",
+            "php ml",
+            "prediction",
+            "predictive modeling",
+            "random forest",
+            "ranking",
+            "recommendation",
+            "regression",
+            "regressor",
+            "ridge",
+            "rubix ml",
+            "rubixml",
+            "softmax",
+            "supervised learning",
+            "support vector machine",
+            "svm",
+            "t-sne",
+            "text mining",
+            "tf idf",
+            "tsne",
+            "unsupervised learning"
+        ],
+        "funding": [
+            {
+                "url": "https://github.com/sponsors/RubixML",
+                "type": "github"
+            }
+        ]
+    },
+    {
+        "name": "rubix/tensor",
+        "version": "2.2.3",
+        "version_normalized": "2.2.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/RubixML/Tensor.git",
+            "reference": "35f8b1421fe7c5b2ce9b52e41da5cc457ea270af"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/RubixML/Tensor/zipball/35f8b1421fe7c5b2ce9b52e41da5cc457ea270af",
+            "reference": "35f8b1421fe7c5b2ce9b52e41da5cc457ea270af",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.2"
+        },
+        "require-dev": {
+            "friendsofphp/php-cs-fixer": "2.18.*",
+            "phalcon/zephir": "^0.12.20",
+            "phpbench/phpbench": "0.16.*",
+            "phpstan/extension-installer": "^1.0",
+            "phpstan/phpstan": "0.12.*",
+            "phpstan/phpstan-phpunit": "0.12.*",
+            "phpunit/phpunit": "8.5.*"
+        },
+        "time": "2021-05-25T05:36:16+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Tensor\\": "src/",
+                "JAMA\\": "lib/JAMA",
+                "Zephir\\Optimizers\\FunctionCall\\": "optimizers/"
+            },
+            "files": [
+                "src/constants.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Andrew DalPino",
+                "email": "support@andrewdalpino.com",
+                "homepage": "https://github.com/andrewdalpino",
+                "role": "Project Lead"
+            },
+            {
+                "name": "Contributors",
+                "homepage": "https://github.com/RubixML/Tensor/graphs/contributors"
+            }
+        ],
+        "description": "A library and extension that provides objects for scientific computing in PHP.",
+        "homepage": "https://github.com/RubixML/Tensor",
+        "keywords": [
+            "1d convolution",
+            "2d convolution",
+            "arithmetic",
+            "blas",
+            "computation",
+            "computing",
+            "convolution",
+            "decomposition",
+            "dot product",
+            "eigendecomposition",
+            "eigenvalue",
+            "eigenvector",
+            "engineering",
+            "extension",
+            "lapack",
+            "linear algebra",
+            "math",
+            "matmul",
+            "matrix",
+            "matrix multiplication",
+            "multithreaded",
+            "php",
+            "php extension",
+            "pseudoinverse",
+            "scientific computing",
+            "signal processing",
+            "singular value decomposition",
+            "statistics",
+            "svd",
+            "tensor",
+            "trigonometry",
+            "vector",
+            "vector norm"
+        ],
+        "funding": [
+            {
+                "url": "https://github.com/RubixML",
+                "type": "github"
+            },
+            {
+                "url": "https://github.com/andrewdalpino",
+                "type": "github"
+            }
+        ]
+    },
+    {
+        "name": "sabberworm/php-css-parser",
+        "version": "8.3.1",
+        "version_normalized": "8.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/sabberworm/PHP-CSS-Parser.git",
+            "reference": "d217848e1396ef962fb1997cf3e2421acba7f796"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/sabberworm/PHP-CSS-Parser/zipball/d217848e1396ef962fb1997cf3e2421acba7f796",
+            "reference": "d217848e1396ef962fb1997cf3e2421acba7f796",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.2"
+        },
+        "require-dev": {
+            "codacy/coverage": "^1.4",
+            "phpunit/phpunit": "~4.8"
+        },
+        "time": "2020-06-01T09:10:00+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Sabberworm\\CSS": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Raphael Schweikert"
+            }
+        ],
+        "description": "Parser for CSS Files written in PHP",
+        "homepage": "http://www.sabberworm.com/blog/2010/6/10/php-css-parser",
+        "keywords": [
+            "css",
+            "parser",
+            "stylesheet"
+        ]
+    },
+    {
+        "name": "symfony/polyfill-mbstring",
+        "version": "v1.23.0",
+        "version_normalized": "1.23.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/polyfill-mbstring.git",
+            "reference": "2df51500adbaebdc4c38dea4c89a2e131c45c8a1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/2df51500adbaebdc4c38dea4c89a2e131c45c8a1",
+            "reference": "2df51500adbaebdc4c38dea4c89a2e131c45c8a1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.1"
+        },
+        "suggest": {
+            "ext-mbstring": "For best performance"
+        },
+        "time": "2021-05-27T09:27:20+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-main": "1.23-dev"
+            },
+            "thanks": {
+                "name": "symfony/polyfill",
+                "url": "https://github.com/symfony/polyfill"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Polyfill\\Mbstring\\": ""
+            },
+            "files": [
+                "bootstrap.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nicolas Grekas",
+                "email": "p@tchwork.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony polyfill for the Mbstring extension",
+        "homepage": "https://symfony.com",
+        "keywords": [
+            "compatibility",
+            "mbstring",
+            "polyfill",
+            "portable",
+            "shim"
+        ],
+        "funding": [
+            {
+                "url": "https://symfony.com/sponsor",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/fabpot",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                "type": "tidelift"
+            }
+        ]
+    },
+    {
+        "name": "symfony/polyfill-php73",
+        "version": "v1.23.0",
+        "version_normalized": "1.23.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/polyfill-php73.git",
+            "reference": "fba8933c384d6476ab14fb7b8526e5287ca7e010"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/fba8933c384d6476ab14fb7b8526e5287ca7e010",
+            "reference": "fba8933c384d6476ab14fb7b8526e5287ca7e010",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.1"
+        },
+        "time": "2021-02-19T12:13:01+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-main": "1.23-dev"
+            },
+            "thanks": {
+                "name": "symfony/polyfill",
+                "url": "https://github.com/symfony/polyfill"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Polyfill\\Php73\\": ""
+            },
+            "files": [
+                "bootstrap.php"
+            ],
+            "classmap": [
+                "Resources/stubs"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nicolas Grekas",
+                "email": "p@tchwork.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
+        "homepage": "https://symfony.com",
+        "keywords": [
+            "compatibility",
+            "polyfill",
+            "portable",
+            "shim"
+        ],
+        "funding": [
+            {
+                "url": "https://symfony.com/sponsor",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/fabpot",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                "type": "tidelift"
+            }
+        ]
+    },
+    {
+        "name": "symfony/polyfill-php80",
+        "version": "v1.23.0",
+        "version_normalized": "1.23.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/polyfill-php80.git",
+            "reference": "eca0bf41ed421bed1b57c4958bab16aa86b757d0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/eca0bf41ed421bed1b57c4958bab16aa86b757d0",
+            "reference": "eca0bf41ed421bed1b57c4958bab16aa86b757d0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.1"
+        },
+        "time": "2021-02-19T12:13:01+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-main": "1.23-dev"
+            },
+            "thanks": {
+                "name": "symfony/polyfill",
+                "url": "https://github.com/symfony/polyfill"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Polyfill\\Php80\\": ""
+            },
+            "files": [
+                "bootstrap.php"
+            ],
+            "classmap": [
+                "Resources/stubs"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ion Bazan",
+                "email": "ion.bazan@gmail.com"
+            },
+            {
+                "name": "Nicolas Grekas",
+                "email": "p@tchwork.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
+        "homepage": "https://symfony.com",
+        "keywords": [
+            "compatibility",
+            "polyfill",
+            "portable",
+            "shim"
+        ],
+        "funding": [
+            {
+                "url": "https://symfony.com/sponsor",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/fabpot",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                "type": "tidelift"
+            }
+        ]
+    },
+    {
+        "name": "youthweb/urllinker",
+        "version": "1.3.0",
+        "version_normalized": "1.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/youthweb/urllinker.git",
+            "reference": "b583abc45d70fee67104798bb73193de34cee5df"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/youthweb/urllinker/zipball/b583abc45d70fee67104798bb73193de34cee5df",
+            "reference": "b583abc45d70fee67104798bb73193de34cee5df",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.2"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^6 || ^7 || ^8"
+        },
+        "time": "2019-10-01T12:10:40+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Youthweb\\UrlLinker\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-3.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Søren Løvborg",
+                "role": "Developer"
+            },
+            {
+                "name": "Dawid Nowak",
+                "email": "code@dnowak.pl",
+                "role": "Developer"
+            }
+        ],
+        "description": "Autolink URLs in text or html",
+        "homepage": "https://github.com/youthweb"
+    }
+]

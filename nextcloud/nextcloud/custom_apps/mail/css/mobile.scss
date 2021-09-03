@@ -1,0 +1,56 @@
+@media only screen and (max-width: $breakpoint-mobile) {
+	.app-content-list {
+		max-width: 100vw;
+	}
+
+	/* full width for message list on mobile */
+	#mail-messages {
+		width: 100%;
+	}
+
+	/* correctly center loading icon on mobile */
+	#mail-message-list-loading {
+		width: 100%;
+	}
+
+	/* overlay message detail on top of message list */
+	#mail-message {
+		z-index: 100;
+		background: var(--color-main-background);
+		width: 100%;
+		left: 0;
+		top: 0;
+	}
+
+	#mail-message-close {
+		display: block;
+		position: fixed;
+		right: 0;
+		top: 45px;
+		width: 44px;
+		height: 44px;
+		background-size: 24px;
+		z-index: 101;
+		cursor: pointer;
+		-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=40)';
+		opacity: 0.4;
+	}
+	#mail-message-close:hover,
+	#mail-message-close:focus {
+		-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=60)';
+		opacity: 0.6;
+	}
+
+	.hidden-mobile {
+		display: none;
+	}
+
+	textarea.message-body {
+		padding-right: 12px;
+	}
+
+	/* reply-forward actions align to the far right */
+	#mail-thread-header .mail-message-actions {
+		margin-right: 5px;
+	}
+}
