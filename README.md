@@ -20,7 +20,49 @@ If not, check the following instructions:
 sudo usermod -aG docker $(whoami)
 ```
 
+## Nextcloud
+First of all, is needed to add the local IP range or domain as a trusted domain. Since we use nextcloud in our local network and it's not exposed to the outside, it's fine to add local IP range as a trusted domain. To do so:
+
+Edit `config.php` inside the nextcloud volume (`nextcloud/nextcloud/config/config.php`) in the host machine. Admin permission is needed to edit the file. Add the following line:
+
+In
+
+```source
+'trusted_domains' =>
+  array (
+    0 => 'localhost:8000',
+  ),
+```
+
+We will add the local IP range as a trusted domain:
+
+```source
+'trusted_domains' =>
+  array (
+    0 => 'localhost:8000',
+    1 => '192.168.*.*',
+  ),
+```
+
+We also can add domains:
+
+```source
+'trusted_domains' =>
+  array (
+    0 => 'localhost:8000',
+    1 => '192.168.*.*',
+    2 => 'server.hahatay',
+  ),
+```
+
+That configuration should work for most local network since most routers assign this range to the local network.
+
+Now we're ready to connect there from any client in the same network as the server.
+
+
 ## PMB
+
+**I did some testing and this looks like is not made to work in a production environment**.
 
 [PMB software](https://www.sigb.net/index.php?lvl=cmspage&pageid=6&id_rubrique=220&opac_view=1) with Docker containers.
 
