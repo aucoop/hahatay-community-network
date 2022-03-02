@@ -11,7 +11,7 @@ services:
       - "67:67/udp"
       - "8000:80/tcp"
     environment:
-      TZ: 'Spain/Barcelona'
+      TZ: 'Africa/Dakar'
       WEBPASSWORD: 'password'
     # Volumes store your data between container upgrades
     volumes:
@@ -56,6 +56,7 @@ services:
       MYSQL_USER: nextcloud
       MYSQL_HOST: nextcloud_db
 
+  # TODO squid looks working, needs propper testing
   squid:
     container_name: squid
     image: sameersbn/squid:3.5.27-2
@@ -72,3 +73,16 @@ services:
       - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+
+  # TODO duckdns needs further testing/understanding
+  duckdns:
+    container_name: dockdns
+    image: linuxserver/duckdns
+    environment:
+      - TZ=Africa/Dakar
+      - SUBDOMAINS=hahatay.duckdns.org
+      - TOKEN=7e2e1d7b-5408-4688-88cc-6902e05418ce
+      - LOG_FILE=true
+    volumes:
+      - /docker/tools/duckdns:/config
+    restart: always
