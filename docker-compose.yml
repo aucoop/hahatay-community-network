@@ -29,7 +29,7 @@ services:
   nextcloud_db:
     container_name: nextcloud_db
     image: mariadb
-    restart: always
+    restart: unless-stopped
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --innodb-file-per-table=1 --skip-innodb-read-only-compressed
     volumes:
       - /home/nextcloud/mysql:/var/lib/mysql
@@ -42,7 +42,7 @@ services:
   nextcloud:
     container_name: nextcloud
     image: lscr.io/linuxserver/nextcloud
-    restart: always
+    restart: unless-stopped
     ports:
       - 443:443
     links:
@@ -55,6 +55,15 @@ services:
       MYSQL_DATABASE: nextcloud
       MYSQL_USER: nextcloud
       MYSQL_HOST: nextcloud_db
+
+  squid:
+    container_name: squid
+    image: sameersbn/squid:3.5.27-2
+    ports:
+      - 3128:3128
+    volumes:
+      - /srv/docker/squid/cache:/var/spool/squid
+    restart: unless-stopped
 
   portainer:
     container_name: portainer
