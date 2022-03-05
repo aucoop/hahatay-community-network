@@ -4,6 +4,10 @@ version: "3"
 services:
   pihole:
     container_name: pihole
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.localhost`)"
+      - "traefik.http.services.pihole.loadbalancer.server.port=8000"
     image: pihole/pihole:latest
     ports:
       - "53:53/tcp"
@@ -25,6 +29,8 @@ services:
       - 127.0.0.1
       - 1.1.1.1
     restart: unless-stopped
+    depends_on:
+      - traefik
 
   nextcloud_db:
     container_name: nextcloud_db
@@ -41,10 +47,15 @@ services:
 
   nextcloud:
     container_name: nextcloud
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.localhost`)"
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=80"
+
     image: lscr.io/linuxserver/nextcloud
     restart: unless-stopped
     ports:
-      - 443:443
+      - 8443:443
     links:
       - nextcloud_db
     volumes:
@@ -55,6 +66,8 @@ services:
       MYSQL_DATABASE: nextcloud
       MYSQL_USER: nextcloud
       MYSQL_HOST: nextcloud_db
+    depends_on:
+      - traefik
 
   # TODO squid looks working, needs propper testing
   squid:
@@ -68,11 +81,18 @@ services:
 
   portainer:
     container_name: portainer
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.localhost`)"
+      - "traefik.http.services.portainer.loadbalancer.server.port=9000"
+
     image: portainer/portainer-ce
     ports:
       - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - traefik
 
   # TODO duckdns needs further testing/understanding
   duckdns:
@@ -89,6 +109,10 @@ services:
 
   rocketchat:
     container_name: rocketchat
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.rocketchat.rule=Host(`rocketchat.localhost`)"
+      - "traefik.http.services.rocketchat.loadbalancer.server.port=3000"
     image: registry.rocket.chat/rocketchat/rocket.chat:latest
     command: >
       bash -c
@@ -112,11 +136,9 @@ services:
     #       - HTTPS_PROXY=http://proxy.domain.com
     depends_on:
       - mongo
+      - traefik
     ports:
       - 3000:3000
-    labels:
-      - "traefik.backend=rocketchat"
-      - "traefik.frontend.rule=Host: your.domain.tld"
 
   mongo:
     container_name: mongo
@@ -147,3 +169,21 @@ services:
         done; (exit $$s)"
     depends_on:
       - mongo
+
+  traefik:
+    container_name: "traefik"
+    image: "traefik:latest"
+    command:
+      - --api.insecure=true
+      - --api.dashboard=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --providers.docker.network=frontend
+      - --entrypoints.frontend.address=:80
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    labels:
+      - "traefik.enable=true"
+    ports:
+      - "80:80"
+      - "8080:8080"
