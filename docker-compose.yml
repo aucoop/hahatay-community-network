@@ -11,7 +11,7 @@ services:
       - "67:67/udp"
       - "8000:80/tcp"
     environment:
-      TZ: 'Spain/Barcelona'
+      TZ: 'Africa/Dakar'
       WEBPASSWORD: 'password'
     # Volumes store your data between container upgrades
     volumes:
@@ -29,7 +29,7 @@ services:
   nextcloud_db:
     container_name: nextcloud_db
     image: mariadb
-    restart: always
+    restart: unless-stopped
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --innodb-file-per-table=1 --skip-innodb-read-only-compressed
     volumes:
       - /home/nextcloud/mysql:/var/lib/mysql
@@ -42,7 +42,7 @@ services:
   nextcloud:
     container_name: nextcloud
     image: lscr.io/linuxserver/nextcloud
-    restart: always
+    restart: unless-stopped
     ports:
       - 443:443
     links:
@@ -56,15 +56,94 @@ services:
       MYSQL_USER: nextcloud
       MYSQL_HOST: nextcloud_db
 
-#  portainer:
-#    image: portainer/portainer-ce:latest
-#    container_name: portainer
-#    restart: unless-stopped
-#    security_opt:
-#      - no-new-privileges:true
-#    volumes:
-#      - /etc/localtime:/etc/localtime:ro
-#      - /var/run/docker.sock:/var/run/docker.sock:ro
-#      - ./portainer-data:/data
-#    ports:
-#      - 9000:9000
+  # TODO squid looks working, needs propper testing
+  squid:
+    container_name: squid
+    image: sameersbn/squid:3.5.27-2
+    ports:
+      - 3128:3128
+    volumes:
+      - /srv/docker/squid/cache:/var/spool/squid
+    restart: unless-stopped
+
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  # TODO duckdns needs further testing/understanding
+  duckdns:
+    container_name: duckdns
+    image: linuxserver/duckdns
+    environment:
+      - TZ=Africa/Dakar
+      - SUBDOMAINS=hahatay.duckdns.org
+      - TOKEN=7e2e1d7b-5408-4688-88cc-6902e05418ce
+      - LOG_FILE=true
+    volumes:
+      - /docker/tools/duckdns:/config
+    restart: always
+
+  rocketchat:
+    container_name: rocketchat
+    image: registry.rocket.chat/rocketchat/rocket.chat:latest
+    command: >
+      bash -c
+        "for i in `seq 1 30`; do
+          node main.js &&
+          s=$$? && break || s=$$?;
+          echo \"Tried $$i times. Waiting 5 secs...\";
+          sleep 5;
+        done; (exit $$s)"
+    restart: unless-stopped
+    volumes:
+      - ./uploads:/app/uploads
+    environment:
+      - PORT=3000
+      - ROOT_URL=http://localhost:3000
+      - MONGO_URL=mongodb://mongo:27017/rocketchat
+      - MONGO_OPLOG_URL=mongodb://mongo:27017/local
+      - REG_TOKEN=${REG_TOKEN}
+    #       - MAIL_URL=smtp://smtp.email
+    #       - HTTP_PROXY=http://proxy.domain.com
+    #       - HTTPS_PROXY=http://proxy.domain.com
+    depends_on:
+      - mongo
+    ports:
+      - 3000:3000
+    labels:
+      - "traefik.backend=rocketchat"
+      - "traefik.frontend.rule=Host: your.domain.tld"
+
+  mongo:
+    container_name: mongo
+    image: mongo:4.0
+    restart: unless-stopped
+    volumes:
+      - ./data/db:/data/db
+      - ./data/dump:/dump
+    command: mongod --smallfiles --oplogSize 128 --replSet rs0 --storageEngine=mmapv1
+    labels:
+      - "traefik.enable=false"
+
+  # this container's job is just run the command to initialize the replica set.
+  # it will run the command and remove himself (it will not stay running)
+  mongo-init-replica:
+    container_name: mongo-init-replica
+    image: mongo:4.0
+    command: >
+      bash -c
+        "for i in `seq 1 30`; do
+          mongo mongo/rocketchat --eval \"
+            rs.initiate({
+              _id: 'rs0',
+              members: [ { _id: 0, host: 'localhost:27017' } ]})\" &&
+          s=$$? && break || s=$$?;
+          echo \"Tried $$i times. Waiting 5 secs...\";
+          sleep 5;
+        done; (exit $$s)"
+    depends_on:
+      - mongo
