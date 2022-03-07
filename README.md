@@ -59,62 +59,26 @@ That configuration should work for most local network since most routers assign 
 
 Now we're ready to connect there from any client in the same network as the server.
 
+## Pihole
 
-## PMB
+When setting up the DNS server, most likely the host will complain because there is already a DNS server running. In Ubuntu server `bind` is listening to port `53` by default, and pihole will complain about that. To fix this, I found out this answer from [pihole forum](https://discourse.pi-hole.net/t/docker-unable-to-bind-to-port-53/45082/7):
 
-**I did some testing and this looks like is not made to work in a production environment**.
+```source
+Port 53 is being used at your host machine, that's why you can not bind 53 to host.
 
-[PMB software](https://www.sigb.net/index.php?lvl=cmspage&pageid=6&id_rubrique=220&opac_view=1) with Docker containers.
+To find what is using port 53 you can do: sudo lsof -i -P -n | grep LISTEN
 
-### Introduction
+I'm a 99.9% sure that systemd-resolved is what is listening to port 53. To solve that you need to disable it. You can do that with these 2 commands:
 
-This project contains a docker-compose file to test quickly PMB software. It could be
-interesting to test it before installing it on a server.
+    systemctl disable systemd-resolved.service
+    systemctl stop systemd-resolved
 
-### How to
+Now you have port 53 open, but no dns configured for your host. To fix that, you need to edit '/etc/resolv.conf' and add the dns address. This is an example with a common dns address:
 
-```bash
-docker-compose up -d
+nameserver 8.8.8.8
+
+If you have another nameserver in that file, I would comment it to prevent issues.
+Once pihole docker container gets running, you can change the dns server of your host to localhost, as you are binding port 53 to the host machine. Change again '/etc/resolv.conf' like this
+
+nameserver 127.0.0.1
 ```
-
-It will start 3 services :
-* the webserver
-* the db engine 
-* one to connect to the db
-
-It could be long the first time (depending on your internet speeed). Check if
-all services are okay with:
-
-```bash
-docker-compose ps
-```
-
-Normally all services are "up".
-
-## Try PMB
-
-The Docker exposed port is 8080, so in your browser go to
-"http://localhost:8080/pmb/tables/install.php" and it will ask you to install pmb.
-The information are :
-* db host: db
-* db name: pmb
-* db root password : password
-
-After that, PMB will be available at "http://localhost:8080/pmb".
-
-## Change version of PMB
-
-If you want to test another version of PMB, change the values in the .env file.
-
-## Apache
-
-Install apache by running:
-
-`sudo apt install apache2`
-
-Apache shows the stuff inside `/var/www/html`. In order to update the content from the folder, first open the file manager with admin permissions.  
-To do so open the `terminal` (`terminal` can be opened with `Ctrl+Alt+T` shortcut). Then, type in the terminal `sudo nautilus` and then the password of the user will be asked. Enter it and then the file manager should be opened. Then, navigate to `/var/www/html` and there you can now copy paste whatever you want.
-
-## Teamviewer
-
-Download the `.deb` file from the teamviwer website and then install it by `sudo dpkg -i *.deb`.
