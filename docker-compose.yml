@@ -29,8 +29,6 @@ services:
       - 127.0.0.1
       - 1.1.1.1
     restart: unless-stopped
-    depends_on:
-      - traefik
 
   nextcloud_db:
     container_name: nextcloud_db
@@ -66,8 +64,6 @@ services:
       MYSQL_DATABASE: nextcloud
       MYSQL_USER: nextcloud
       MYSQL_HOST: nextcloud_db
-    depends_on:
-      - traefik
 
   # TODO squid looks working, needs propper testing
   squid:
@@ -91,8 +87,6 @@ services:
       - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    depends_on:
-      - traefik
 
   # TODO duckdns needs further testing/understanding
   duckdns:
@@ -136,7 +130,7 @@ services:
     #       - HTTPS_PROXY=http://proxy.domain.com
     depends_on:
       - mongo
-      - traefik
+
     ports:
       - 3000:3000
 
@@ -170,6 +164,7 @@ services:
     depends_on:
       - mongo
 
+  # TODO Reverse proxy seems to work.Needs testing and look for better practices.
   traefik:
     container_name: "traefik"
     image: "traefik:latest"
