@@ -188,7 +188,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.email=postmaster@example.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
       # Disable SSL verification on backend
-      # - "--serverstransport.insecureskipverify=true"
+      - "--serverstransport.insecureskipverify=true"
     ports:
       - "443:443"
       - "80:80"
