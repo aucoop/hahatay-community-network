@@ -52,7 +52,7 @@ services:
       - "traefik.http.services.nextcloud.loadbalancer.server.port=443"
       - "traefik.http.routers.nextcloud.entrypoints=websecure"
       - "traefik.http.routers.nextcloud.tls.certresolver=myresolver"
-      # - "traefik.http.services.nextcloud.loadbalancer.server.scheme=websecure"
+      - "traefik.http.services.nextcloud.loadbalancer.server.scheme=https"
 
     image: lscr.io/linuxserver/nextcloud
     restart: unless-stopped
@@ -209,20 +209,3 @@ services:
       - "traefik.http.routers.whoami.rule=Host(`whoami.server.hahatay`)"
       - "traefik.http.routers.whoami.entrypoints=websecure"
       - "traefik.http.routers.whoami.tls.certresolver=myresolver"
-
-  chat:
-    container_name: "letschat"
-    image: sdelements/lets-chat
-    links:
-      - mongo
-    ports:
-      - 8001:8080
-      - 5222:5222
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.chat.rule=Host(`chat.server.hahatay`)"
-      - "traefik.http.services.chat.loadbalancer.server.port=8080"
-
-  mongo_chat:
-    container_name: "mongo_chat"
-    image: mongo:latest
