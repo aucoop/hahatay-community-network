@@ -32,19 +32,22 @@ services:
     restart: unless-stopped
 
   nextcloud_db:
+    image: ghcr.io/linuxserver/mariadb
     container_name: nextcloud_db
-    image: mariadb
-    restart: unless-stopped
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --innodb-file-per-table=1 --skip-innodb-read-only-compressed
-    volumes:
-      - /home/nextcloud/mysql:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: nextcloud
-      MYSQL_USER: nextcloud
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=mariadbpassword
+      - TZ=Africa/Dakar
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=ncuser
+      - MYSQL_PASSWORD=ncpassword
+    volumes:
+      - ./nextcloud/appdata:/config
+    restart: unless-stopped
 
   nextcloud:
+    image: ghcr.io/linuxserver/nextcloud
     container_name: nextcloud
     labels:
       - "traefik.enable=true"
@@ -53,22 +56,18 @@ services:
       - "traefik.http.routers.nextcloud.entrypoints=websecure"
       - "traefik.http.routers.nextcloud.tls.certresolver=myresolver"
       - "traefik.http.services.nextcloud.loadbalancer.server.scheme=https"
-
-    image: lscr.io/linuxserver/nextcloud
     restart: unless-stopped
     ports:
       - 8443:443
-
-    links:
+    depends_on:
       - nextcloud_db
     volumes:
       - ./nextcloud/appdata:/config
       - ./nextcloud/data:/data
     environment:
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: nextcloud
-      MYSQL_USER: nextcloud
-      MYSQL_HOST: nextcloud_db
+      - PUID=1000
+      - PGID=1000
+      - TZ=Africa/Dakar
 
   # TODO squid looks working, needs propper testing
   squid:
