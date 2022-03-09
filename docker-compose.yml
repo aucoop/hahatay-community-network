@@ -6,7 +6,7 @@ services:
     container_name: pihole
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.pihole.rule=Host(`pihole.server.hahatay`)"
+      - "traefik.http.routers.pihole.rule=Host(`pihole.hahatay`)"
       - "traefik.http.services.pihole.loadbalancer.server.port=80"
     image: pihole/pihole:latest
     ports:
@@ -51,7 +51,7 @@ services:
     container_name: nextcloud
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.server.hahatay`)"
+      - "traefik.http.routers.nextcloud.rule=Host(`cloud.hahatay`)"
       - "traefik.http.services.nextcloud.loadbalancer.server.port=443"
       - "traefik.http.routers.nextcloud.entrypoints=websecure"
       - "traefik.http.routers.nextcloud.tls.certresolver=myresolver"
@@ -83,7 +83,7 @@ services:
     container_name: portainer
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.portainer.rule=Host(`portainer.server.hahatay`)"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.hahatay`)"
       - "traefik.http.services.portainer.loadbalancer.server.port=9000"
 
     image: portainer/portainer-ce
@@ -110,7 +110,7 @@ services:
     container_name: rocketchat
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.rocketchat.rule=Host(`rocketchat.server.hahatay`)"
+      - "traefik.http.routers.rocketchat.rule=Host(`chat.hahatay`)"
       - "traefik.http.services.rocketchat.loadbalancer.server.port=3000"
       - "traefik.http.routers.rocketchat.entrypoints=websecure"
       - "traefik.http.routers.rocketchat.tls.certresolver=myresolver"
@@ -187,7 +187,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.caserver=https://acme-staging-v02.api.letsencrypt.org/directory"
       - "--certificatesresolvers.myresolver.acme.email=postmaster@example.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-      # Disable SSL verification on backend
+      # Disable SSL verification on backend (for nextcloud)
       - "--serverstransport.insecureskipverify=true"
     ports:
       - "443:443"
@@ -198,7 +198,7 @@ services:
       - "./letsencrypt:/letsencrypt"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.api.rule=Host(`traefik.server.hahatay`)"
+      - "traefik.http.routers.api.rule=Host(`traefik.hahatay`)"
       - "traefik.http.routers.api.service=api@internal"
     restart: unless-stopped
 
@@ -207,7 +207,21 @@ services:
     container_name: "whoami"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.whoami.rule=Host(`whoami.server.hahatay`)"
+      - "traefik.http.routers.whoami.rule=Host(`whoami.hahatay`)"
       - "traefik.http.routers.whoami.entrypoints=websecure"
       - "traefik.http.routers.whoami.tls.certresolver=myresolver"
+    restart: unless-stopped
+
+  librespeed:
+    image: lscr.io/linuxserver/librespeed
+    container_name: librespeed
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Africa/Dakar
+      - PASSWORD=password
+    volumes:
+      - /path/to/appdata/config:/config
+    ports:
+      - 8002:80
     restart: unless-stopped
