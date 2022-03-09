@@ -91,6 +91,7 @@ services:
       - 9000:9000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    restart: unless-stopped
 
   # TODO duckdns needs further testing/understanding
   duckdns:
@@ -103,7 +104,7 @@ services:
       - LOG_FILE=true
     volumes:
       - /docker/tools/duckdns:/config
-    restart: always
+    restart: unless-stopped
 
   rocketchat:
     container_name: rocketchat
@@ -199,12 +200,14 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`traefik.server.hahatay`)"
       - "traefik.http.routers.api.service=api@internal"
+    restart: unless-stopped
 
   whoami:
     image: "traefik/whoami"
-    container_name: "whaomi"
+    container_name: "whoami"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`whoami.server.hahatay`)"
       - "traefik.http.routers.whoami.entrypoints=websecure"
       - "traefik.http.routers.whoami.tls.certresolver=myresolver"
+    restart: unless-stopped
