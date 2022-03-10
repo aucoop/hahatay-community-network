@@ -93,19 +93,6 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
 
-  # TODO duckdns needs further testing/understanding
-  duckdns:
-    container_name: duckdns
-    image: linuxserver/duckdns
-    environment:
-      - TZ=Africa/Dakar
-      - SUBDOMAINS=hahatay.duckdns.org
-      - TOKEN=7e2e1d7b-5408-4688-88cc-6902e05418ce
-      - LOG_FILE=true
-    volumes:
-      - /docker/tools/duckdns:/config
-    restart: unless-stopped
-
   rocketchat:
     container_name: rocketchat
     labels:
@@ -176,8 +163,7 @@ services:
     image: "traefik:v2.6"
     container_name: "traefik"
     command:
-      # - "--log.level=DEBUG"
-
+      - "--log.level=DEBUG"
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
@@ -200,6 +186,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`traefik.hahatay`)"
       - "traefik.http.routers.api.service=api@internal"
+
     restart: unless-stopped
 
   whoami:
