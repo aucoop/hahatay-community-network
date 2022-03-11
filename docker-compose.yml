@@ -17,7 +17,6 @@ services:
     environment:
       TZ: 'Africa/Dakar'
       WEBPASSWORD: 'password'
-      VIRTUAL_HOST: pihole.server.hahatay
     # Volumes store your data between container upgrades
     volumes:
       - './etc-pihole/:/etc/pihole/'
@@ -209,6 +208,33 @@ services:
       - PASSWORD=password
     volumes:
       - /path/to/appdata/config:/config
-    ports:
-      - 8002:80
     restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.librespeed.rule=Host(`librespeed.hahatay`)"
+  # souin:
+  #   image: darkweak/souin:latest
+  #   container_name: "souin"
+  #   ports:
+  #     - 80:80
+  #   depends_on:
+  #     - redis
+  #   environment:
+  #     GOPATH: /app
+  #   volumes:
+  #     - ./souin/configuration.yml:/configuration/configuration.yml
+
+  # redis:
+  #   image: redis:alpine
+
+
+  mumble:
+    restart: always
+    container_name: mumble
+    image: magicalex/mumble:latest
+    ports:
+      - "64738:64738"
+      - "64738:64738/udp"
+    volumes:
+      - /mnt/docker/mumble/conf:/opt/mumble/conf
+      - /mnt/docker/mumble/data:/opt/mumble/data
