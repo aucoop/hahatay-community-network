@@ -51,7 +51,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nextcloud.rule=Host(`cloud.hahatay`)"
-      - "traefik.http.services.nextcloud.loadbalancer.server.port=443"
       - "traefik.http.routers.nextcloud.entrypoints=websecure"
       - "traefik.http.routers.nextcloud.tls.certresolver=myresolver"
       - "traefik.http.services.nextcloud.loadbalancer.server.scheme=https"
@@ -185,7 +184,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.api.rule=Host(`traefik.hahatay`)"
       - "traefik.http.routers.api.service=api@internal"
-
     restart: unless-stopped
 
   whoami:
@@ -212,21 +210,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.librespeed.rule=Host(`librespeed.hahatay`)"
-  # souin:
-  #   image: darkweak/souin:latest
-  #   container_name: "souin"
-  #   ports:
-  #     - 80:80
-  #   depends_on:
-  #     - redis
-  #   environment:
-  #     GOPATH: /app
-  #   volumes:
-  #     - ./souin/configuration.yml:/configuration/configuration.yml
-
-  # redis:
-  #   image: redis:alpine
-
 
   mumble:
     restart: always

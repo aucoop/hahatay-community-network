@@ -20,13 +20,6 @@ services:
   nextcloud:
     image: ghcr.io/linuxserver/nextcloud
     container_name: nextcloud
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.server.hahatay`)"
-      - "traefik.http.services.nextcloud.loadbalancer.server.port=443"
-      - "traefik.http.routers.nextcloud.entrypoints=websecure"
-      - "traefik.http.routers.nextcloud.tls.certresolver=myresolver"
-      - "traefik.http.services.nextcloud.loadbalancer.server.scheme=https"
     restart: unless-stopped
     ports:
       - 443:443
