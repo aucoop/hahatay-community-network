@@ -1,10 +1,16 @@
 #!/bin/bash
 # Simple script for checking if the hosts are up and running
 
-hosts=("127.0.0.3", "123.123.123.123", "127.0.0.1")
+hosts=(
+    "192.168.10.2"
+    "192.168.10.3"
+    "media.hahatay"
+    "server.hahatay"
+    # TODO Add remaining domains/IPs
+)
 
 for host in "${hosts[@]}"; do
-    ping -c 1 $host -w 2 > /dev/null
+    ping -c 1 $host -w 2 >/dev/null
 
     if [ $? -eq 0 ]; then
         printf "\xE2\x9C\x94 $host is up\n"
@@ -13,5 +19,3 @@ for host in "${hosts[@]}"; do
     fi
 
 done
-
-# TODO Try also to ping the domains
