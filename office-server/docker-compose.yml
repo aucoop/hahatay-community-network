@@ -19,8 +19,8 @@ services:
       WEBPASSWORD: 'password'
     # Volumes store your data between container upgrades
     volumes:
-      - './etc-pihole/:/etc/pihole/'
-      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+      - './office-server/pihole/etc-pihole/:/etc/pihole/'
+      - './office-server/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
     cap_add:
@@ -42,7 +42,7 @@ services:
       - MYSQL_USER=ncuser
       - MYSQL_PASSWORD=ncpassword
     volumes:
-      - ./nextcloud/appdata:/config
+      - ./office-server/nextcloud/appdata:/config
     restart: unless-stopped
 
   nextcloud:
@@ -61,8 +61,8 @@ services:
     depends_on:
       - nextcloud_db
     volumes:
-      - ./nextcloud/appdata:/config
-      - ./nextcloud/data:/data
+      - ./office-server/nextcloud/appdata:/config
+      - ./office-server/nextcloud/data:/data
     environment:
       - PUID=1000
       - PGID=1000
@@ -112,7 +112,7 @@ services:
         done; (exit $$s)"
     restart: unless-stopped
     volumes:
-      - ./uploads:/app/uploads
+      - ./office-server/rocketchat/uploads:/app/uploads
     environment:
       - PORT=3000
       - ROOT_URL=http://localhost:3000
@@ -132,8 +132,8 @@ services:
     image: mongo:4.0
     restart: unless-stopped
     volumes:
-      - ./data/db:/data/db
-      - ./data/dump:/dump
+      - ./office-server/rocketchat/data/db:/data/db
+      - ./office-server/rocketchat/data/dump:/dump
     command: mongod --smallfiles --oplogSize 128 --replSet rs0 --storageEngine=mmapv1
     labels:
       - "traefik.enable=false"
@@ -207,7 +207,7 @@ services:
       - TZ=Africa/Dakar
       - PASSWORD=password
     volumes:
-      - /path/to/appdata/config:/config
+      - ./office-server/librespeed/config
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
@@ -236,5 +236,5 @@ services:
       - "64738:64738"
       - "64738:64738/udp"
     volumes:
-      - /mnt/docker/mumble/conf:/opt/mumble/conf
-      - /mnt/docker/mumble/data:/opt/mumble/data
+      - ./office-server/mumble/conf:/opt/mumble/conf
+      - ./office-server/mumble/data:/opt/mumble/data
