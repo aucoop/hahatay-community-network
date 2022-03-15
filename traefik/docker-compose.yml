@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.6
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    networks:
+      - proxy
+    ports:
+      - 80:80
+      - 443:443
+        #- 8080:8080
+    environment:
+      # CF_API_EMAIL, CF_API_KEY - The Global API Key needs to be used, not the Origin CA Key
+      - CF_API_EMAIL=sergiogimenezanton@gmail.com
+      - CF_API_KEY=7c0af6158cd37a5672b1dc8f50120c9c0c8b1
+        #      - CF_API_KEY=My Global API Key
+        #      - CF_DNS_API_TOKEN=DNS:Edit-Token
+        #      - CF_ZONE_API_TOKEN=Zone:Read-Token
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /home/hahatay/local_ssl/traefik/data/traefik.yml:/traefik.yml:ro
+      - /home/hahatay/local_ssl/traefik/data/acme.json:/acme.json
+      - /home/hahatay/local_ssl/traefik/data/config.yml:/config.yml:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.traefik.entrypoints=http"
+      - "traefik.http.routers.traefik.rule=Host(`traefik.sergiogimenez.xyz`)"
+      # user:admin password:password
+      - "traefik.http.middlewares.traefik-auth.basicauth.users=admin:$$apr1$$ej14hZ0H$$u.UBOPis1/B7W30zaEHvt0"
+      - "traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto=https"
+      - "traefik.http.routers.traefik.middlewares=traefik-https-redirect"
+      - "traefik.http.routers.traefik-secure.entrypoints=https"
+      - "traefik.http.routers.traefik-secure.rule=Host(`traefik.sergiogimenez.xyz`)"
+      - "traefik.http.routers.traefik-secure.middlewares=traefik-auth"
+      - "traefik.http.routers.traefik-secure.tls=true"
+      - "traefik.http.routers.traefik-secure.tls.certresolver=cloudflare"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].main=sergiogimenez.xyz"
+      - "traefik.http.routers.traefik-secure.tls.domains[0].sans=*.sergiogimenez.xyz"
+      - "traefik.http.routers.traefik-secure.service=api@internal"
+
+networks:
+  proxy:
+    external: true
+
