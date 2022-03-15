@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+  librespeed:
+    image: lscr.io/linuxserver/librespeed
+    container_name: librespeed
+    networks:
+      - proxy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Africa/Dakar
+      - PASSWORD=password
+    volumes:
+      - ./data/config
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.librespeed.entrypoints=http"
+      - "traefik.http.routers.librespeed.rule=Host(`librespeed.sergiogimenez.xyz`)"
+      - "traefik.http.middlewares.librespeed-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.librespeed.middlewares=librespeed-https-redirect"
+      - "traefik.http.routers.librespeed-secure.entrypoints=https"
+      - "traefik.http.routers.librespeed-secure.rule=Host(`librespeed.sergiogimenez.xyz`)"
+      - "traefik.http.routers.librespeed-secure.tls=true"
+      - "traefik.http.routers.librespeed-secure.service=librespeed"
+      - "traefik.docker.network=proxy"
+
+networks:
+  proxy:
+    external: true

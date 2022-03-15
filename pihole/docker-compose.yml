@@ -4,10 +4,6 @@ version: "3"
 services:
   pihole:
     container_name: pihole
-#    labels:
-#      - "traefik.enable=true"
-#      - "traefik.http.routers.pihole.rule=Host(`pihole.hahatay`)"
-#      - "traefik.http.services.pihole.loadbalancer.server.port=80"
     image: pihole/pihole:latest
     networks:
       - proxy
