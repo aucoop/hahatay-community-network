@@ -32,7 +32,7 @@ services:
       - "traefik.http.routers.nextcloud-secure.rule=Host(`cloud.sergiogimenez.xyz`)"
       - "traefik.http.routers.nextcloud-secure.tls=true"
       - "traefik.http.routers.nextcloud-secure.service=nextcloud"
-      - "traefik.http.services.nextcloud.loadbalancer.server.port=443"
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=8443"
       - "traefik.docker.network=proxy"
     restart: unless-stopped
     ports:

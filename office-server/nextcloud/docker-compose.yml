@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+
+  nextcloud_db:
+    image: ghcr.io/linuxserver/mariadb
+    container_name: nextcloud_db
+    networks:
+      - proxy
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=mariadbpassword
+      - TZ=Africa/Dakar
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=ncuser
+      - MYSQL_PASSWORD=ncpassword
+    volumes:
+      - ./data/config:/config
+    restart: unless-stopped
+
+  nextcloud:
+    image: ghcr.io/linuxserver/nextcloud
+    container_name: nextcloud
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nextcloud.entrypoints=http"
+      - "traefik.http.routers.nextcloud.rule=Host(`cloud.sergiogimenez.xyz`)"
+      - "traefik.http.middlewares.nextcloud-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.nextcloud.middlewares=nextcloud-https-redirect"
+      - "traefik.http.routers.nextcloud-secure.entrypoints=https"
+      - "traefik.http.routers.nextcloud-secure.rule=Host(`cloud.sergiogimenez.xyz`)"
+      - "traefik.http.routers.nextcloud-secure.tls=true"
+      - "traefik.http.routers.nextcloud-secure.service=nextcloud"
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=8443"
+      - "traefik.docker.network=proxy"
+    restart: unless-stopped
+    ports:
+      - 8443:443
+    depends_on:
+      - nextcloud_db
+    volumes:
+      - ./data/config:/config
+      - ./data/appdata:/data
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Africa/Dakar
+
+networks:
+  proxy:
+    external: true
