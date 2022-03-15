@@ -12,14 +12,10 @@ services:
     ports:
       - 80:80
       - 443:443
-        #- 8080:8080
     environment:
       # CF_API_EMAIL, CF_API_KEY - The Global API Key needs to be used, not the Origin CA Key
       - CF_API_EMAIL=sergiogimenezanton@gmail.com
       - CF_API_KEY=testkey
-        #      - CF_API_KEY=My Global API Key
-        #      - CF_DNS_API_TOKEN=DNS:Edit-Token
-        #      - CF_ZONE_API_TOKEN=Zone:Read-Token
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -47,4 +43,3 @@ services:
 networks:
   proxy:
     external: true
-

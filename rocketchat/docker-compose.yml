@@ -6,14 +6,12 @@ services:
     container_name: rocketchat
     networks:
       - proxy
-        #    ports:
-            #      - 3000:3000
     labels:
       - "traefik.enable=true"
-        #- "traefik.http.routers.rocketchat.entrypoints=http"
-        #- "traefik.http.routers.rocketchat.rule=Host(`chat.sergiogimenez.xyz`)"
-        #- "traefik.http.middlewares.rocketchat-https-redirect.redirectscheme.scheme=https"
-        #- "traefik.http.routers.rocketchat.middlewares=rocketchat-https-redirect"
+      - "traefik.http.routers.rocketchat.entrypoints=http"
+      - "traefik.http.routers.rocketchat.rule=Host(`chat.sergiogimenez.xyz`)"
+      - "traefik.http.middlewares.rocketchat-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.rocketchat.middlewares=rocketchat-https-redirect"
       - "traefik.http.routers.rocketchat-secure.entrypoints=https"
       - "traefik.http.routers.rocketchat-secure.rule=Host(`chat.sergiogimenez.xyz`)"
       - "traefik.http.routers.rocketchat-secure.tls=true"
@@ -31,7 +29,7 @@ services:
         done; (exit $$s)"
     restart: unless-stopped
     volumes:
-      - /home/hahatay/local_ssl/rocketchat/data/uploads:/app/uploads
+      - ./data/uploads:/app/uploads
     environment:
       - PORT=3000
       - ROOT_URL=http://localhost:3000
@@ -51,10 +49,10 @@ services:
     image: mongo:4.0
     restart: unless-stopped
     networks:
-     - proxy
+      - proxy
     volumes:
-      - /home/hahatay/local_ssl/rocketchat/data/db:/data/db
-      - /home/hahatay/local_ssl/rocketchat/data/dump:/dump
+      - ./data/db:/data/db
+      - ./data/dump:/dump
     command: mongod --smallfiles --oplogSize 128 --replSet rs0 --storageEngine=mmapv1
     labels:
       - "traefik.enable=false"
@@ -65,7 +63,7 @@ services:
     container_name: mongo-init-replica
     image: mongo:4.0
     networks:
-     - proxy
+      - proxy
     command: >
       bash -c
         "for i in `seq 1 30`; do
