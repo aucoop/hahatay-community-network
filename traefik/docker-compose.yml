@@ -16,7 +16,7 @@ services:
     environment:
       # CF_API_EMAIL, CF_API_KEY - The Global API Key needs to be used, not the Origin CA Key
       - CF_API_EMAIL=sergiogimenezanton@gmail.com
-      - CF_API_KEY=7c0af6158cd37a5672b1dc8f50120c9c0c8b1
+      - CF_API_KEY=testkey
         #      - CF_API_KEY=My Global API Key
         #      - CF_DNS_API_TOKEN=DNS:Edit-Token
         #      - CF_ZONE_API_TOKEN=Zone:Read-Token
