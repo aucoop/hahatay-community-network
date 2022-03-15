@@ -19,9 +19,9 @@ services:
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - /home/hahatay/local_ssl/traefik/data/traefik.yml:/traefik.yml:ro
-      - /home/hahatay/local_ssl/traefik/data/acme.json:/acme.json
-      - /home/hahatay/local_ssl/traefik/data/config.yml:/config.yml:ro
+      - ./data/traefik.yml:/traefik.yml:ro
+      - ./data/acme.json:/acme.json
+      - ./data/config.yml:/config.yml:ro
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=http"
