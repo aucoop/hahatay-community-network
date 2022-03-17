@@ -22,6 +22,8 @@ services:
   nextcloud:
     image: ghcr.io/linuxserver/nextcloud
     container_name: nextcloud
+    networks:
+      - proxy
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nextcloud.entrypoints=http"
@@ -32,7 +34,8 @@ services:
       - "traefik.http.routers.nextcloud-secure.rule=Host(`cloud.intranet-hahatay.org`)"
       - "traefik.http.routers.nextcloud-secure.tls=true"
       - "traefik.http.routers.nextcloud-secure.service=nextcloud"
-      - "traefik.http.services.nextcloud.loadbalancer.server.port=8443"
+      - "traefik.http.services.nextcloud.loadbalancer.server.port=443"
+      - "traefik.http.services.nextcloud.loadbalancer.server.scheme=https"
       - "traefik.docker.network=proxy"
     restart: unless-stopped
     ports:
