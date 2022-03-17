@@ -13,7 +13,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Africa/Dakar
-      - PASSWORD=password
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
