@@ -9,11 +9,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.rocketchat.entrypoints=http"
-      - "traefik.http.routers.rocketchat.rule=Host(`chat.sergiogimenez.xyz`)"
+      - "traefik.http.routers.rocketchat.rule=Host(`chat.***REMOVED***`)"
       - "traefik.http.middlewares.rocketchat-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.rocketchat.middlewares=rocketchat-https-redirect"
       - "traefik.http.routers.rocketchat-secure.entrypoints=https"
-      - "traefik.http.routers.rocketchat-secure.rule=Host(`chat.sergiogimenez.xyz`)"
+      - "traefik.http.routers.rocketchat-secure.rule=Host(`chat.***REMOVED***`)"
       - "traefik.http.routers.rocketchat-secure.tls=true"
       - "traefik.http.routers.rocketchat-secure.service=rocketchat"
       - "traefik.http.services.rocketchat.loadbalancer.server.port=3000"

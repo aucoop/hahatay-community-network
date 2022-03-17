@@ -18,7 +18,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.librespeed.entrypoints=http"
-      - "traefik.http.routers.librespeed.rule=Host(`librespeed.sergiogimenez.xyz`)"
+      - "traefik.http.routers.librespeed.rule=Host(`librespeed.***REMOVED***`)"
       - "traefik.docker.network=proxy"
 
 networks:
