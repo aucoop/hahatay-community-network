@@ -42,67 +42,204 @@ This section explains how to set up all the services. In this use case we are us
 
 ### Setting Office Server Up
 
+First, create  network through which all containers will communiacate between them. These is mandatory due to the fact that we want Traefik to act as a reverse proxy for this network.
+
+```source
+docker network create proxy
+```
+
+#### Set up Pihole
+
 SSH to office server and clone the repo:
 
 ```source
 git clone https://github.com/aucoop/self-hosted-docker-server
 cd self-hosted-docker-server/office-server
+```
+
+After that, cd into the `pihole` directory in order to set pihole up:
+
+```source
+cd pihole
 docker-compose up -d
 ```
+
+That will bring up pihole, an adblocker and DNS server.
 
 > If using Ubuntu Server, probably you get a nslookup error or something like that. Make sure your `/etc/resolv.conf` file points to a well known DNS server like `1.1.1.1` or `8.8.8.8`. See the pihole section inside the caveats section for more details about that.
 
 Now, go to pihole container to add the local DNS domains into the DNS server. Go to the pihole container dashboard (`http://192.168.10.2:8000/admin/`), go to `Login` and login with the password specified previously. Then go to Local DNS -> DNS Records and add the following domains:
 
-| Domain             | IP           |
-| ------------------ | ------------ |
-| chat.hahatay       | 192.168.10.2 |
-| cloud.hahatay      | 192.168.10.2 |
-| librespeed.hahatay | 192.168.10.2 |
-| media.hahatay      | 192.168.10.3 |
-| pihole.hahatay     | 192.168.10.2 |
-| portainer.hahatay  | 192.168.10.2 |
-| server.hahatay     | 192.168.10.2 |
-| traefik.hahatay    | 192.168.10.2 |
-| whoami.hahatay     | 192.168.10.2 |
-| jitsi.hahatay      | 192.168.10.3 |
+| Domain                          | IP           |
+| ------------------------------- | ------------ |
+| chat.intranet-hahatay.org       | 192.168.10.2 |
+| cloud.intranet-hahatay.org      | 192.168.10.2 |
+| librespeed.intranet-hahatay.org | 192.168.10.2 |
+| portainer.intranet-hahatay.org  | 192.168.10.2 |
+| server.intranet-hahatay.org     | 192.168.10.2 |
+| traefik.intranet-hahatay.org    | 192.168.10.2 |
+| jitsi.intranet-hahatay.org      | 192.168.10.2 |
+| media.intranet-hahatay.org      | 192.168.10.3 |
 
 Now make sure that the router of the local network is configured to forward the DNS queries to the pihole container. Important, make sure the router has Pihole as the **only DNS server**, otherwise resolving local DNS won't work as expected. Didn't find a workaround for that, could be nice to have a well known DNS server as  secondary DNS in case the pihole instance is not working, access to the internet is still permitted, but for some reason this configuration is not possible. More info on this regard on offical documentation: [How do I configure my devices to use Pi-hole as their DNS server?](https://discourse.pi-hole.net/t/how-do-i-configure-my-devices-to-use-pi-hole-as-their-dns-server/245).
 
-You can make sure everything is running properly by checking the container status in portainer (192.168.10.2:9000).
+> Note: Domain for pihole is not there for simplicity sake. The Traefik reverse proxy redirects everything to the https port, and the pihole dashboard is only accessible through http (AFAIK). For simplicity, I left it accessible only through http via IP and the port 8000, i.e. `192.168.10.2:8000`
+
+#### Set up Traefik
+
+Trafik is a reverse proxy and load balancer. It is used to redirect all the traffic to the specific service only using the well known ports. It also allows to use signed certificates for the running services via Let's encrypt, that means nothing will complain about not trusting the site. In order to set up  and understand this, was very helpful to see this video: [Put Wildcard Certificates and SSL on EVERYTHING - Traefik Tutorial](https://www.youtube.com/watch?v=liV3c9m_OX8)
+
+The steps to have traefik working are the following:
+
+* Create the `data/` directory
+
+  ```source
+  cd ../traefik
+  mkdir data
+  cd data
+  ```
+
+* Create the `acme.json` file where the certificates will be stored.
+
+  ```source
+  touch acme.json
+  chmod 600 acme.json
+  ```
+
+* Create the `config.yml` file where the configuration will be stored.
+
+  ```source
+  touch config.yml
+  ```
+
+* Create the `traefik.yml` and compy the following content:
+
+  ```yaml
+  api:
+    dashboard: true
+    debug: true
+  <!-- log:
+    level: DEBUG -->
+  entryPoints:
+    http:
+      address: ":80"
+    https:
+      address: ":443"
+  serversTransport:
+    insecureSkipVerify: true
+  providers:
+    docker:
+      endpoint: "unix:///var/run/docker.sock"
+      exposedByDefault: false
+    file:
+      filename: /config.yml
+  certificatesResolvers:
+    cloudflare:
+      acme:
+        email: YOUR_MAIL
+        storage: acme.json
+        dnsChallenge:
+          provider: cloudflare
+          resolvers:
+            - "1.1.1.1:53"
+            - "1.0.0.1:53"
+  ```
+
+  * Make sure you add the `YOUR_MAIL` address (the cloudfare) address.
+  * As it can be seen, this configuration file assumes that your domain is managed by cloudfare. If you want to use another provider, you can change the provider name to the one you want (and make sure what `resolvers` use).
+
+* Make sure also you fill in the following environment variables:
+
+  ```yaml
+      environment:
+      # CF_API_EMAIL, CF_API_KEY - The Global API Key needs to be used, not the Origin CA Key
+      - CF_API_EMAIL=${CLOUDFARE_EMAIL}
+      - CF_API_KEY=${CLOUDFARE_API_KEY}
+  ```
+
+You can check if everything went fine by checking the logs (`docker logs traefik --follow`) or by checking the dashboard traefik.intranet-hahatay.org and see the connection secure green lock.
+
+#### Set up Portainer
+
+```source
+cd ../portainer
+docker-compose up -d
+```
+
+You can make sure everything is running properly by checking the container status in portainer (`192.168.10.2:9000` or `protainer.intranet-hahatay.org`).
 
 #### Set up Nextcloud
 
+FIrst, create a `.env` file with the required environment variables.
+
+```source
+cd ../nextcloud
+touch .env
+```
+
+The `.env` file needs to have the following content:
+
+```source
+MYSQL_ROOT_PSSWD=mysqlpassword
+DB_NAME=nextcloud
+DB_USER=nuser
+DB_PASSWORD=password
+```
+
+Then, you can start the container with the following command:
+
+```source
+docker-compose up
+```
+
 ![nextcloud_img](img/nextcloud_setup.png)
 
-Make sure you select MySQL as the database engine, which is better suited for a production environment. More infop on how to configure that on [this tutorial](https://docs.linuxserver.io/general/swag#nextcloud-subdomain-reverse-proxy-example).
+Make sure you select MySQL as the database engine, which is better suited for a production environment. More info on how to configure that on [this tutorial](https://docs.linuxserver.io/general/swag#nextcloud-subdomain-reverse-proxy-example).
 
-Also make sure you don't install the "Recommended Apps", linuxserver.io, the provider of the image [recommends not to do so](https://docs.linuxserver.io/images/docker-nextcloud).
+Also make sure you don't install the "Recommended Apps", [linuxserver.io](https://linuxserver.io), the provider of the image [recommends not to do so](https://docs.linuxserver.io/images/docker-nextcloud).
 
-#### Rocketchat
+#### Set up Rocketchat
+
+In order to get rocketchat running:
+
+```source
+cd ../rocketchat
+docker-compose up -d
+```
+
+> Note: the mongo version being used is deprecated and rocketchat complains about it. Planning on fix that later.
+
+> Note 2: There is a warning about a `REG_TOKEN` empty that will be fixed also at some point.
 
 Follow the setup wizard to get the chat running, pretty straightforward.
 
-### Setting Media Server Up
-
-SSH to media server and clone the repo:
-
-```source
-git clone https://github.com/aucoop/self-hosted-docker-server
-cd self-hosted-docker-server/media-server
-docker-compose up -d
-```
+Once the Rocket chat instance is set up and running, we are going to see how to enable video and audio calls in rocketchat by integrating jitsi meet.
 
 ### Set up Jitsi
 
 Jitsi is a service to enable videoconferencing. However, the main use case in this server set up is to enable video/voice calls in rocketchat.
 
-In order to get jitsi running, the [quickstart guide from jitsi official docs](https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-docker/) has been used. Probably a better approach can be used.
+In order to get jitsi running, the [quickstart guide from jitsi official docs](https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-docker/) has been used. Maybe a better approach can be used, but this seems to work for now. In this set up, I'm using version 7001 (latest one ATM).
 
-Once followed the quickstart guide, the jitsi server is running, but still is needed to configure the following parameters in the `.env` file:
+* The TL;DR here:
 
-* Add `ENABLE_XMPP_WEBSOCKET=0` in `.env` file. This will allow to add a port in the domain.
-* Change the `HTTPS` and `HTTP` port if needed:
+  ```source
+  cd ..
+  wget https://github.com/jitsi/docker-jitsi-meet/archive/refs/tags/stable-7001.zip
+  unzip stable-7001.zip
+  rm stable-7001.zip
+  mv docker-jitsi-meet-stable-7001/ jitsi
+  cd jitsi
+  cp env.example .env
+  ./gen-passwords.sh
+  mkdir -p ~/.jitsi-meet-cfg/{web/crontabs,web/letsencrypt,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri}
+  ```
+
+Before running the `docker-compose up -d` command, we needed to configure the following parameters in the `.env` file. Open the `.env` with a text editor and follow the next steps:
+
+* Add the line: `ENABLE_XMPP_WEBSOCKET=0`. This will allow to add a port in the domain.
+
+* Change the `HTTPS` and `HTTP` port if needed. In my setup:
 
   ```bash
   # Exposed HTTP port
@@ -113,20 +250,83 @@ Once followed the quickstart guide, the jitsi server is running, but still is ne
   ```
 
 * Set timezone
-  `TZ=Africa/Dakar`
+
+  ```source
+  TZ=Africa/Dakar
+  ```
 
 * Add `PUBLIC_URL`:
   
     ```bash
     # Public URL for the web service (required)
-    PUBLIC_URL=https://192.168.10.3
+    PUBLIC_URL=https://jitsi.intranet-hahatay.org
     ```
 
-* Add `DOCKER_HOST_ADDRESS` if running in a LAN environment, otherwise jitsi won't fit more than 2 people in the call.
+* **Very important:** Add `DOCKER_HOST_ADDRESS` if running in a LAN environment, otherwise jitsi won't fit more than 2 people in the call.
 
     ```bash
-    DOCKER_HOST_ADDRESS=192.168.10.3
+    DOCKER_HOST_ADDRESS=192.168.10.2
     ```
+
+Save changes in `.env` file and run `docker-compose up -d`.
+
+Now, go to chat.intranet-hahatay.org, login to rocketchat with the admin account and enable the jitsi integration, to do so, go to Administration -> VideoConference -> Jitsi. More in depth about the procedure in [this tutorial](https://www.inmotionhosting.com/support/edu/software/jitsi-rocketchat/). The parameters that work in my set up are the following ones:
+
+![jitsi_rocketchat_params.png](img/jitsi_rocketchat_params.png)
+
+There is one step more involved left. In order to properly use video/voice calls with the mobile app, jitsi has to run in https with a valid certificate. Jitsi is not supported to be running behind traefik AFAIK (or it's quite complex and I haven't figured it out).
+
+What we do here is to copy the certificate generated from let's encrypt from the `acme.json` file and copy it into jitsi.
+
+* First, create the directory to store the certificates:
+
+```source
+cd ~/self-hosted-docker-server/office-server/jitsi/
+mkdir certificates
+```
+
+* Extact the certificate from the `acme.json`:
+
+  ```source
+  less ~/self-hosted-docker-server/office-server/traefik/data/acme.json | grep certificate | cut -c 25- | rev | cut -c 3- | rev | base64 --decode >  ~/self-hosted-docker-server/office-server/jitsi/certificates/cert.crt
+  ```
+
+* Extract the key from the `acme.json`:
+
+  ```source
+  less ~/self-hosted-docker-server/office-server/traefik/data/acme.json | grep key | cut -c 17- | rev | cut -c 3- | rev | base64 --decode > ~/self-hosted-docker-server/office-server/jitsi/certificates/cert.key
+  ```
+
+* Now add the following line to the `docker-compose.yml` in the `jitsi` directory.
+
+  ```yaml
+  volumes:
+    - ./certificates:/config/keys:Z 
+  ```
+
+* Now delete the old `.jitsi-meet-cfg/` directory:
+
+```source
+sudo rm -rf ~/.jitsi-meet-cfg/
+```
+
+* Run docker-compose up again:
+
+```source
+docker-compose down
+docker-compose up -d
+```
+
+### Setting Media Server Up
+
+SSH to media server and clone the repo:
+
+```source
+git clone https://github.com/aucoop/self-hosted-docker-server
+cd self-hosted-docker-server/media-server
+```
+
+For now, the only service running in this server is nextcloud, so go to `nextcloud` directory and follow the same procedure than before.
 
 ## Caveats for some services
 
