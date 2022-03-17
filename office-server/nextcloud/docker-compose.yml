@@ -10,11 +10,11 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - MYSQL_ROOT_PASSWORD=mariadbpassword
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PSSWD}
       - TZ=Africa/Dakar
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=ncuser
-      - MYSQL_PASSWORD=ncpassword
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
     volumes:
       - ./data/config:/config
     restart: unless-stopped
