@@ -20,8 +20,8 @@ services:
       - "traefik.http.routers.status-secure.rule=Host(`status.home.sergiogimenez.com`)"
       - "traefik.http.routers.status-secure.tls=true"
       - "traefik.http.routers.status-secure.service=status"
-      - "traefik.http.services.status.loadbalancer.server.port=4000"
-      - "traefik.docker.network=proxy"
+      - "traefik.http.services.status.loadbalancer.server.port=3001" #Port of Container
+      - "traefik.docker.network=proxy" #Service needs to be in Proxy network
 
 networks:
   proxy:
