@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+    jibri:
+        image: jitsi/jibri:stable-7001
+        restart: ${RESTART_POLICY}
+        volumes:
+            - ${CONFIG}/jibri:/config:Z
+            - /dev/shm:/dev/shm
+        cap_add:
+            - SYS_ADMIN
+            - NET_BIND_SERVICE
+        devices:
+            - /dev/snd:/dev/snd
+        environment:
+            - CHROMIUM_FLAGS
+            - DISPLAY=:0
+            - ENABLE_STATS_D
+            - JIBRI_FFMPEG_AUDIO_SOURCE
+            - JIBRI_FFMPEG_AUDIO_DEVICE
+            - JIBRI_HTTP_API_EXTERNAL_PORT
+            - JIBRI_HTTP_API_INTERNAL_PORT
+            - JIBRI_RECORDING_RESOLUTION
+            - JIBRI_USAGE_TIMEOUT
+            - JIBRI_XMPP_USER
+            - JIBRI_XMPP_PASSWORD
+            - JIBRI_BREWERY_MUC
+            - JIBRI_RECORDER_USER
+            - JIBRI_RECORDER_PASSWORD
+            - JIBRI_RECORDING_DIR
+            - JIBRI_FINALIZE_RECORDING_SCRIPT_PATH
+            - JIBRI_STRIP_DOMAIN_JID
+            - JIBRI_LOGS_DIR
+            - PUBLIC_URL
+            - TZ
+            - XMPP_AUTH_DOMAIN
+            - XMPP_DOMAIN
+            - XMPP_INTERNAL_MUC_DOMAIN
+            - XMPP_RECORDER_DOMAIN
+            - XMPP_SERVER
+            - XMPP_TRUST_ALL_CERTS
+        depends_on:
+            - jicofo
+        networks:
+            meet.jitsi:
+
