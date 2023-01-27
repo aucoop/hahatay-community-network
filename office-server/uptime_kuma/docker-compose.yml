@@ -13,11 +13,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.status.entrypoints=http"
-      - "traefik.http.routers.status.rule=Host(`status.home.sergiogimenez.com`)"
+      - "traefik.http.routers.status.rule=Host(`status.***REMOVED***`)"
       - "traefik.http.middlewares.status-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.status.middlewares=status-https-redirect"
       - "traefik.http.routers.status-secure.entrypoints=https"
-      - "traefik.http.routers.status-secure.rule=Host(`status.home.sergiogimenez.com`)"
+      - "traefik.http.routers.status-secure.rule=Host(`status.***REMOVED***`)"
       - "traefik.http.routers.status-secure.tls=true"
       - "traefik.http.routers.status-secure.service=status"
       - "traefik.http.services.status.loadbalancer.server.port=3001" #Port of Container
