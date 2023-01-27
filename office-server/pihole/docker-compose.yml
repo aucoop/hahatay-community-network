@@ -14,7 +14,7 @@ services:
       - "8000:80/tcp"
     environment:
       TZ: 'Africa/Dakar'
-      WEBPASSWORD: 'password'
+      WEBPASSWORD: ${PIHOLE_PASSWORD}
     # Volumes store your data between container upgrades
     volumes:
       - ./data/etc-pihole:/etc/pihole

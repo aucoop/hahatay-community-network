@@ -1,2 +1,4 @@
 data
-!traefik/data
+*.env
+uptime-kuma-data
+jitsi

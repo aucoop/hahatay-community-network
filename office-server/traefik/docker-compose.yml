@@ -14,8 +14,13 @@ services:
       - 443:443
     environment:
       # CF_API_EMAIL, CF_API_KEY - The Global API Key needs to be used, not the Origin CA Key
+<<<<<<< HEAD
       - CF_API_EMAIL=calidad@hahatay.org
       - CF_API_KEY=a873399a0c73b7786254845dec8b3f721f11d
+=======
+      - CF_API_EMAIL=${CLOUDFARE_EMAIL}
+      - CF_API_KEY=${CLOUDFARE_API_KEY}
+>>>>>>> fc921d997d736f01783cd8d3857b8e821fbe330a
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
