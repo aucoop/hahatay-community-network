@@ -16,7 +16,7 @@ services:
       - MYSQL_USER=${DB_USER}
       - MYSQL_PASSWORD=${DB_PASSWORD}
     volumes:
-      - ./data/config:/config
+      - /mnt/NextCloudData/config:/config
     restart: unless-stopped
 
   nextcloud:
@@ -43,8 +43,8 @@ services:
     depends_on:
       - nextcloud_db
     volumes:
-      - ./data/config:/config
-      - ./data/appdata:/data
+      - /mnt/NextCloudData/config:/config
+      - /mnt/NextCloudData/data:/data
     environment:
       - PUID=1000
       - PGID=1000
