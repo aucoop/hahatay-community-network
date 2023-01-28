@@ -8,6 +8,10 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
+    ports:
+      - 9443:9443
+      - 9000:9000
+      - 8090:8000
     networks:
       - proxy
     volumes:
