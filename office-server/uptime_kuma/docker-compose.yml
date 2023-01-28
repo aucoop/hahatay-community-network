@@ -7,9 +7,10 @@ services:
     volumes:
       - ./uptime-kuma-data:/app/data
     ports:
-      - 4000:3001  # <Host Port>:<Container Port>
+      - 8091:3001  # <Host Port>:<Container Port>
     restart: always
-    
+    networks:
+      - proxy    
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.status.entrypoints=http"
