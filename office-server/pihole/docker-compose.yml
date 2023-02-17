@@ -4,9 +4,8 @@ version: "3"
 services:
   pihole:
     container_name: pihole
+    hostname: pihole-I
     image: pihole/pihole:latest
-    networks:
-      - proxy
     ports:
       - "53:53/tcp"
       - "53:53/udp"
