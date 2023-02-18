@@ -11,3 +11,18 @@ services:
     volumes:
       - "./data:/data"
       - "./music:/music:ro"
+  samba:
+    image: dperson/samba # There is no version tag, only latest
+    restart: always
+    command: '-u user;password" -s "media;/media;yes;no" -s "downloads;/downloads;yes;no"'
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=Africa/Dakar
+    ports:
+      - 139:139
+      - 445:445
+    volumes:
+      - "./data:/data"
+
+
