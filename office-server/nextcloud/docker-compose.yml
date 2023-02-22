@@ -27,11 +27,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nextcloud.entrypoints=http"
-      - "traefik.http.routers.nextcloud.rule=Host(`cloud.***REMOVED***`)"
+      - "traefik.http.routers.nextcloud.rule=Host(`cloud.intranet-hahatay.org`)"
       - "traefik.http.middlewares.nextcloud-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.nextcloud.middlewares=nextcloud-https-redirect"
       - "traefik.http.routers.nextcloud-secure.entrypoints=https"
-      - "traefik.http.routers.nextcloud-secure.rule=Host(`cloud.***REMOVED***`)"
+      - "traefik.http.routers.nextcloud-secure.rule=Host(`cloud.intranet-hahatay.org`)"
       - "traefik.http.routers.nextcloud-secure.tls=true"
       - "traefik.http.routers.nextcloud-secure.service=nextcloud"
       - "traefik.http.services.nextcloud.loadbalancer.server.port=443"

@@ -72,14 +72,14 @@ Now, go to pihole container to add the local DNS domains into the DNS server. Go
 
 | Domain                          | IP           |
 | ------------------------------- | ------------ |
-| chat.***REMOVED***       | 192.168.10.2 |
-| cloud.***REMOVED***      | 192.168.10.2 |
-| librespeed.***REMOVED*** | 192.168.10.2 |
-| portainer.***REMOVED***  | 192.168.10.2 |
-| server.***REMOVED***     | 192.168.10.2 |
-| traefik.***REMOVED***    | 192.168.10.2 |
-| jitsi.***REMOVED***      | 192.168.10.2 |
-| media.***REMOVED***      | 192.168.10.3 |
+| chat.intranet-hahatay.org       | 192.168.10.2 |
+| cloud.intranet-hahatay.org      | 192.168.10.2 |
+| librespeed.intranet-hahatay.org | 192.168.10.2 |
+| portainer.intranet-hahatay.org  | 192.168.10.2 |
+| server.intranet-hahatay.org     | 192.168.10.2 |
+| traefik.intranet-hahatay.org    | 192.168.10.2 |
+| jitsi.intranet-hahatay.org      | 192.168.10.2 |
+| media.intranet-hahatay.org      | 192.168.10.3 |
 
 Now make sure that the router of the local network is configured to forward the DNS queries to the pihole container. Important, make sure the router has Pihole as the **only DNS server**, otherwise resolving local DNS won't work as expected. Didn't find a workaround for that, could be nice to have a well known DNS server as  secondary DNS in case the pihole instance is not working, access to the internet is still permitted, but for some reason this configuration is not possible. More info on this regard on offical documentation: [How do I configure my devices to use Pi-hole as their DNS server?](https://discourse.pi-hole.net/t/how-do-i-configure-my-devices-to-use-pi-hole-as-their-dns-server/245).
 
@@ -157,7 +157,7 @@ The steps to have traefik working are the following:
       - CF_API_KEY=${CLOUDFARE_API_KEY}
   ```
 
-You can check if everything went fine by checking the logs (`docker logs traefik --follow`) or by checking the dashboard traefik.***REMOVED*** and see the connection secure green lock.
+You can check if everything went fine by checking the logs (`docker logs traefik --follow`) or by checking the dashboard traefik.intranet-hahatay.org and see the connection secure green lock.
 
 #### Set up Portainer
 
@@ -166,7 +166,7 @@ cd ../portainer
 docker-compose up -d
 ```
 
-You can make sure everything is running properly by checking the container status in portainer (`192.168.10.2:9000` or `protainer.***REMOVED***`).
+You can make sure everything is running properly by checking the container status in portainer (`192.168.10.2:9000` or `protainer.intranet-hahatay.org`).
 
 #### Set up Nextcloud
 
@@ -259,7 +259,7 @@ Before running the `docker-compose up -d` command, we needed to configure the fo
   
     ```bash
     # Public URL for the web service (required)
-    PUBLIC_URL=https://jitsi.***REMOVED***
+    PUBLIC_URL=https://jitsi.intranet-hahatay.org
     ```
 
 * **Very important:** Add `DOCKER_HOST_ADDRESS` if running in a LAN environment, otherwise jitsi won't fit more than 2 people in the call.
@@ -270,7 +270,7 @@ Before running the `docker-compose up -d` command, we needed to configure the fo
 
 Save changes in `.env` file and run `docker-compose up -d`.
 
-Now, go to chat.***REMOVED***, login to rocketchat with the admin account and enable the jitsi integration, to do so, go to Administration -> VideoConference -> Jitsi. More in depth about the procedure in [this tutorial](https://www.inmotionhosting.com/support/edu/software/jitsi-rocketchat/). The parameters that work in my set up are the following ones:
+Now, go to chat.intranet-hahatay.org, login to rocketchat with the admin account and enable the jitsi integration, to do so, go to Administration -> VideoConference -> Jitsi. More in depth about the procedure in [this tutorial](https://www.inmotionhosting.com/support/edu/software/jitsi-rocketchat/). The parameters that work in my set up are the following ones:
 
 ![jitsi_rocketchat_params.png](img/jitsi_rocketchat_params.png)
 
