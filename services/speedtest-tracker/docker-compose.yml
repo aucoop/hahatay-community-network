@@ -17,11 +17,11 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.speedtest-tracker.entrypoints=http"
-      - "traefik.http.routers.speedtest-tracker.rule=Host(`speedtest-tracker.***REMOVED***`)"
+      - "traefik.http.routers.speedtest-tracker.rule=Host(`${DOMAIN}`)"
       - "traefik.http.middlewares.speedtest-tracker-https-redirect.redirectscheme.scheme=https"
       - "traefik.http.routers.speedtest-tracker.middlewares=speedtest-tracker-https-redirect"
       - "traefik.http.routers.speedtest-tracker-secure.entrypoints=https"
-      - "traefik.http.routers.speedtest-tracker-secure.rule=Host(`speedtest-tracker.***REMOVED***`)"
+      - "traefik.http.routers.speedtest-tracker-secure.rule=Host(`${DOMAIN}`)"
       - "traefik.http.routers.speedtest-tracker-secure.tls=true"
       - "traefik.http.routers.speedtest-tracker-secure.service=speedtest-tracker"
       - "traefik.http.services.speedtest-tracker.loadbalancer.server.port=80" #Port of Container
