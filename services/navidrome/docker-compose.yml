@@ -1,0 +1,56 @@
+version: "3.3"
+services:
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: hahafy
+    ports:
+      - "4534:4533"
+    environment:
+      ND_SCANINTERVAL: 15m
+      ND_LOGLEVEL: info
+      ND_BASEURL: ""
+    volumes:
+      - ./data:/data
+      - ./musica:/music:ro
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.navidrome.entrypoints=http"
+      - "traefik.http.routers.navidrome.rule=Host(`${DOMAIN}`)"
+      - "traefik.docker.network=proxy"
+
+  samba:
+    image: dperson/samba # There is no version tag, only latest
+    container_name: hahafy_samba
+    command: '-u "hahatay;Landoooo" -s "musica;/musica;yes;no" -s "downloads;/downloads;yes;no" -p'
+    restart: always
+    stdin_open: true
+    tty: true
+    environment:
+      - TZ=Africa/Dakar
+    ports:
+      - 139:139
+      - 445:445
+    volumes:
+      - ./musica:/media
+      - ./torrents:/downloads
+
+  transmission:
+    image : jaymoulin/transmission:3.00-1.6.1
+    container_name: transmission
+    command: transmission-daemon -f -g /config
+    volumes:
+      - ./transmission:/config
+      - ./torrents:/downloads
+    ports:
+      - 9092:9091
+      - 51414:51413
+      - 51414:51413/udp
+    expose:
+      - 9091
+    restart: unless-stopped
+
+networks:
+  proxy:
+    external: true
