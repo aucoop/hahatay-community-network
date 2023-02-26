@@ -1,0 +1,32 @@
+version: '3.3'
+services:
+  speedtest-tracker:
+    container_name: speedtest-tracker
+    ports:
+      - '8089:80'
+      - '8445:443'
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - './config:/config'
+    image: 'ghcr.io/alexjustesen/speedtest-tracker:latest'
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.speedtest-tracker.entrypoints=http"
+      - "traefik.http.routers.speedtest-tracker.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.middlewares.speedtest-tracker-https-redirect.redirectscheme.scheme=https"
+      - "traefik.http.routers.speedtest-tracker.middlewares=speedtest-tracker-https-redirect"
+      - "traefik.http.routers.speedtest-tracker-secure.entrypoints=https"
+      - "traefik.http.routers.speedtest-tracker-secure.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.speedtest-tracker-secure.tls=true"
+      - "traefik.http.routers.speedtest-tracker-secure.service=speedtest-tracker"
+      - "traefik.http.services.speedtest-tracker.loadbalancer.server.port=80" #Port of Container
+      - "traefik.docker.network=proxy" #Service needs to be in Proxy network
+
+networks:
+  proxy:
+    external: true
