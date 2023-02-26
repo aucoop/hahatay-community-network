@@ -17,7 +17,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.navidrome.entrypoints=http"
-      - "traefik.http.routers.navidrome.rule=Host(`hahafy.***REMOVED***`)"
+      - "traefik.http.routers.navidrome.rule=Host(`${DOMAIN}`)"
       - "traefik.docker.network=proxy"
 
   samba:
