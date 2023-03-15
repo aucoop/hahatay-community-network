@@ -16,7 +16,7 @@ In 2022, Hahatay added new access points and formed a mesh network to improve Wi
 
 A NAS with [OpenMediaVault](https://www.openmediavault.org) with backups in different buildings.
 
-: streaming services for multimedia consumption.
+[Navidrome](https://www.navidrome.org) and : streaming services for multimedia consumption.
 
 Traefik, Portainer, and Pihole for network architecture maintenance and management.
 The purpose of this repository is to detail the process followed in the implementation of this infrastructure in hopes of encouraging more people from the tech community to embrace self-hosted projects and target other rural areas around Africa.
