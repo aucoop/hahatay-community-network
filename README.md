@@ -11,9 +11,13 @@ Hahatay created a local network using six airMAX antennas, routers, hubs, switch
 In 2022, Hahatay added new access points and formed a mesh network to improve Wi-Fi access and implemented new local services. These included shared folders for workers with remote backup, online video and audio playback services, and an improved Nextcloud platform. Collaborating corporate entities donated servers for these services, including Labdoo and Typeform, which include: 
 
 [Nextcloud](https://nextcloud.com): a cloud solution similar to Google Cloud, for uploading and sharing documents.
+
 [Talk](https://nextcloud.com/talk/): A Nextcloud solution to chat with your peers and make voice and video calls.
+
 A NAS with [OpenMediaVault](https://www.openmediavault.org) with backups in different buildings.
+
 : streaming services for multimedia consumption.
+
 Traefik, Portainer, and Pihole for network architecture maintenance and management.
 The purpose of this repository is to detail the process followed in the implementation of this infrastructure in hopes of encouraging more people from the tech community to embrace self-hosted projects and target other rural areas around Africa.
 
