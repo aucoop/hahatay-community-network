@@ -1,4 +1,4 @@
-# Hahatay Project
+# Hahatay Network
 
 ## About
 
