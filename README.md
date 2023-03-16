@@ -49,5 +49,5 @@ A NAS with [OpenMediaVault](https://www.openmediavault.org): combined with backu
 
 [SpeedTest](https://www.speedtest.net/): for internet-intranet speed testing.
 
-The purpose of this repository is to detail the process followed in the implementation of this infrastructure in hopes of encouraging more people from the tech community to embrace self-hosted projects and target other rural areas around Africa.
+
 
