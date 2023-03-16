@@ -23,12 +23,12 @@ OpenWRT provides a good low cost option to deploy Mesh Networks, with a user fri
     - [Xiaomi Router 1GB](https://github.com/aucoop/self-hosted-docker-server/wiki/Install-OpenWrt-Xiaomi-Router-(1GB))
     - [Linksys Router 2500v4 E5400](https://github.com/aucoop/self-hosted-docker-server/wiki/Installing-OpenWRT-in-Linksys-2500v4---E5400-Routers)
     - [Linksys Router 2500v4 E5400 V2](https://github.com/aucoop/self-hosted-docker-server/wiki/Installing-OpenWRT-in-Linksys-2500v4-E5400-Routers-V2)
-- 
+- [Create a Mesh Network](https://github.com/aucoop/self-hosted-docker-server/wiki/Setting-Up-Mesh-Network-with-OpenWrt-V2) 
 
 ### Microservices
 
 
-> **All documentation and code around microservices deployment can be found [here](https://github.com/aucoop/self-hosted-docker-server/tree/documentation/office-server))**
+> **All documentation and code around microservices deployment can be found [here](https://github.com/aucoop/self-hosted-docker-server/tree/documentation/office-server)**
 
 
 Documentation  has been done around the following microservices deployed:
