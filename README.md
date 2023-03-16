@@ -12,13 +12,20 @@ In 2022, Hahatay added new access points and formed a mesh network to improve Wi
 
 [Nextcloud](https://nextcloud.com): a cloud solution similar to Google Cloud, for uploading and sharing documents.
 
-[Talk](https://nextcloud.com/talk/): A Nextcloud solution to chat with your peers and make voice and video calls.
+[Talk](https://nextcloud.com/talk/): a Nextcloud solution to chat with your peers and make voice and video calls.
 
-A NAS with [OpenMediaVault](https://www.openmediavault.org) with backups in different buildings.
+A NAS with [OpenMediaVault](https://www.openmediavault.org): combined with backups in different buildings for disaster recovery.
 
-[Navidrome](https://www.navidrome.org) and : streaming services for multimedia consumption.
+[Navidrome](https://www.navidrome.org): streaming services for multimedia consumption.
 
-Traefik, Portainer, and Pihole for network architecture maintenance and management.
+[Traefik](https://traefik.io/): reverse proxy for deploying multiple microservices.
+
+[Portainer](https://www.portainer.io/): for docker management.
+
+[PiHole](https://pi-hole.net/): our Intranet DNS.
+
+[SpeedTest](https://www.speedtest.net/): for internet-intranet speed testing.
+
 The purpose of this repository is to detail the process followed in the implementation of this infrastructure in hopes of encouraging more people from the tech community to embrace self-hosted projects and target other rural areas around Africa.
 
 ## Purpose
