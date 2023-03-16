@@ -18,7 +18,12 @@ This repository aims to detail the process followed during the implementation of
 > **All documentation and code around microservices deployment can be found [here](https://github.com/aucoop/self-hosted-docker-server/wiki)**
 
 OpenWRT provides a good low cost option to deploy Mesh Networks, with a user friendly interface called LuCi. You will find documentation on how to:
-- Install OpenWRT in [Xiaomi Router 100MB](https://github.com/aucoop/self-hosted-docker-server/wiki/Install-OpenWrt-Xiaomi-Router-(100MB)), [Xiaomi Router 1GB](https://github.com/aucoop/self-hosted-docker-server/wiki/Install-OpenWrt-Xiaomi-Router-(1GB)), [Linksys Router 2500v4 E5400](https://github.com/aucoop/self-hosted-docker-server/wiki/Installing-OpenWRT-in-Linksys-2500v4---E5400-Routers) and [Linksys Router 2500v4 E5400 V2](https://github.com/aucoop/self-hosted-docker-server/wiki/Installing-OpenWRT-in-Linksys-2500v4-E5400-Routers-V2)
+- Install OpenWRT:
+    - [Xiaomi Router 100MB](https://github.com/aucoop/self-hosted-docker-server/wiki/Install-OpenWrt-Xiaomi-Router-(100MB)) 
+    - [Xiaomi Router 1GB](https://github.com/aucoop/self-hosted-docker-server/wiki/Install-OpenWrt-Xiaomi-Router-(1GB))
+    - [Linksys Router 2500v4 E5400](https://github.com/aucoop/self-hosted-docker-server/wiki/Installing-OpenWRT-in-Linksys-2500v4---E5400-Routers)
+    - [Linksys Router 2500v4 E5400 V2](https://github.com/aucoop/self-hosted-docker-server/wiki/Installing-OpenWRT-in-Linksys-2500v4-E5400-Routers-V2)
+- 
 
 ### Microservices
 
