@@ -15,7 +15,7 @@ In 2022, Hahatay added new access points and formed a mesh network to improve Wi
 This repository aims to detail the process followed during the implementation of the Hahatay network in both years. The hope is to inspire more people from the tech community to embrace self-hosted projects and target other rural areas around the world. Documentation is focused on 3 main areas: backhaul network architecture, low cost Mesh Networks deployment and micro-services deployment.
 
 ### Low-Cost Mesh Networks
-> **All documentation and code around microservices deployment can be found [here](https://github.com/aucoop/self-hosted-docker-server/wiki)**
+> **All documentation and code around Mesh Network deployment can be found [here](https://github.com/aucoop/self-hosted-docker-server/wiki)**
 
 OpenWRT provides a good low cost option to deploy Mesh Networks, with a user friendly interface called LuCi. You will find documentation on how to:
 - Install OpenWRT:
