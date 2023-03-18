@@ -164,7 +164,7 @@ Then, you can start the container with the following command:
 docker-compose up
 ```
 
-![nextcloud_img](img/nextcloud_setup.png)
+![nextcloud_img](../img/nextcloud_setup.png)
 
 Make sure you select MySQL as the database engine, which is better suited for a production environment. More info on how to configure that on [this tutorial](https://docs.linuxserver.io/general/swag#nextcloud-subdomain-reverse-proxy-example).
 
