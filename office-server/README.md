@@ -22,25 +22,8 @@ If not, check the following instructions:
 sudo usermod -aG docker $(whoami)
 ```
 
-## Setting Everything Up
 
-This section explains how to set up all the services. In this use case we are using 2 servers to host the following services:
-
-* Office Server (Intel i5 @ 3.10GHz, 4 cores, 12 GB RAM)
-  * Nextcloud instance. Shared files cloud storage (mostly for documentation).
-  * Rocket chat. Chat room for teams and file sharing.
-  * Pihole. DNS server for the internet and local domains. Also acts as ads blocker and metric recopilatoin.
-  * Portainer. Docker management tool.
-  * Traefik. Reverse proxy and load balancer.
-  * Squid. Proxy server for the internet. The goal is to use HTTP cache to reduce the number of queries to the internet. (Not fully tested).
-  * Librespeed. Speed test tool to measure the available throughout inside the intranet.
-
-* Media Server (Intel i3 @ 2.93GHz, 4 cores, 8 GB RAM)
-  * Nextcloud instance. This is the server that will host the media files.
-  * Jitsi meet. This is the server that will host the video/voice calls. We are using jitsi meet integrated with rocketchat.
-  * Portainer. Docker management tool
-
-### Setting Office Server Up
+### Create proxy network
 
 First, create  network through which all containers will communiacate between them. These is mandatory due to the fact that we want Traefik to act as a reverse proxy for this network.
 
@@ -68,22 +51,11 @@ That will bring up pihole, an adblocker and DNS server.
 
 > If using Ubuntu Server, probably you get a nslookup error or something like that. Make sure your `/etc/resolv.conf` file points to a well known DNS server like `1.1.1.1` or `8.8.8.8`. See the pihole section inside the caveats section for more details about that.
 
-Now, go to pihole container to add the local DNS domains into the DNS server. Go to the pihole container dashboard (`http://192.168.10.2:8000/admin/`), go to `Login` and login with the password specified previously. Then go to Local DNS -> DNS Records and add the following domains:
-
-| Domain                          | IP           |
-| ------------------------------- | ------------ |
-| chat.domain.com                 | 192.168.10.2 |
-| cloud.domain.com                | 192.168.10.2 |
-| librespeed.domain.com           | 192.168.10.2 |
-| portainer.domain.com            | 192.168.10.2 |
-| server.domain.com               | 192.168.10.2 |
-| traefik.domain.com              | 192.168.10.2 |
-| jitsi.domain.com                | 192.168.10.2 |
-| media.domain.com                | 192.168.10.3 |
+Now, go to pihole container to add the local DNS domains into the DNS server. Go to the pihole container dashboard (`http://ip_address:8000/admin/`), go to `Login` and login with the password specified previously. In Local DNS -> DNS Records you will be able to add the different domains.
 
 Now make sure that the router of the local network is configured to forward the DNS queries to the pihole container. Important, make sure the router has Pihole as the **only DNS server**, otherwise resolving local DNS won't work as expected. Didn't find a workaround for that, could be nice to have a well known DNS server as  secondary DNS in case the pihole instance is not working, access to the internet is still permitted, but for some reason this configuration is not possible. More info on this regard on offical documentation: [How do I configure my devices to use Pi-hole as their DNS server?](https://discourse.pi-hole.net/t/how-do-i-configure-my-devices-to-use-pi-hole-as-their-dns-server/245).
 
-> Note: Domain for pihole is not there for simplicity sake. The Traefik reverse proxy redirects everything to the https port, and the pihole dashboard is only accessible through http (AFAIK). For simplicity, I left it accessible only through http via IP and the port 8000, i.e. `192.168.10.2:8000`
+> Note: Domain for pihole is not there for simplicity sake. The Traefik reverse proxy redirects everything to the https port, and the pihole dashboard is only accessible through http (AFAIK). For simplicity, I left it accessible only through http via IP and the port 8000.
 
 #### Set up Traefik
 
