@@ -59,5 +59,5 @@ The list of services that run in the network is constantly evolving, but here ar
 
 [Portainer](https://www.portainer.io/): for container management.
 
-[PiHole](https://pi-hole.net/): our Intranet DNS. Check also the extra steps for ahving a redundant instance.
+[PiHole](https://pi-hole.net/): our Intranet DNS. Check also the extra steps for having a redundant instance.
 
