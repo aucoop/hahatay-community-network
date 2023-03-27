@@ -57,7 +57,7 @@ The list of services that run in the network is constantly evolving, but here ar
 
 * [Traefik](https://traefik.io/): reverse proxy for deploying multiple services in the same host. Also is useful to get SSL certificates within all services running in the network.
 
-[Portainer](https://www.portainer.io/): for container management.
+* [Portainer](https://www.portainer.io/): for container management.
 
-[PiHole](https://pi-hole.net/): our Intranet DNS. Check also the extra steps for having a redundant instance.
+* [PiHole](https://pi-hole.net/): our Intranet DNS. Check also the extra steps for having a redundant instance.
 
