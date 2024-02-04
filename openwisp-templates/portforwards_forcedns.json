@@ -1,0 +1,13 @@
+{
+    "firewall": [
+        {
+            "config_name": "redirect",
+            "name": "Force DNS",
+            "dest": "lan",
+            "target": "DNAT",
+            "src": "wan",
+            "src_dport": "53",
+            "dest_port": "53"
+        }
+    ]
+}

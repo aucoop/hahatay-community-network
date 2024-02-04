@@ -1,0 +1,28 @@
+{
+    "firewall": [
+        {
+            "config_name": "zone",
+            "name": "lan",
+            "output": "ACCEPT",
+            "input": "ACCEPT",
+            "forward": "ACCEPT",
+            "network": [
+                "lan"
+            ],
+            "config_value": "zone1"
+        },
+        {
+            "config_name": "zone",
+            "name": "wan",
+            "output": "ACCEPT",
+            "input": "ACCEPT",
+            "forward": "REJECT",
+            "masq": "1",
+            "mtu_fix": "1",
+            "network": [
+                "wan"
+            ],
+            "config_value": "zone2"
+        }
+    ]
+}

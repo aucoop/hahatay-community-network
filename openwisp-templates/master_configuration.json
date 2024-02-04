@@ -1,0 +1,72 @@
+{
+    "interfaces": [
+        {
+            "type": "other",
+            "name": "wan",
+            "device": "eth0.2",
+            "proto": "dhcp",
+            "dns": [
+                "{{dir_dns_1}}",
+                "{{dir_dns_2}}"
+            ],
+            "peerdns": "0"
+        },
+        {
+            "type": "other",
+            "name": "lan",
+            "device": "br-lan",
+            "proto": "static",
+            "dns": [
+                "{{dir_dns_1}}",
+                "{{dir_dns_2}}"
+            ],
+            "delegate": "0",
+            "netmask": "255.255.255.0",
+            "ip6assign": "60",
+            "ipaddr": "{{ip_master}}"
+        }
+    ],
+    "dhcp": [
+        {
+            "config_name": "dhcp",
+            "config_value": "lan",
+            "interface": "lan",
+            "start": "100",
+            "limit": "150",
+            "dhcpv4": "server",
+            "dhcpv6": "server",
+            "ra_flags": [
+                "managed-config",
+                "other-config"
+            ],
+            "leasetime": "1h",
+            "dhcp_option": [
+                "6,192.168.10.4,192.168.10.5"
+            ]
+        }
+    ],
+    "wireless": [
+        {
+            "network": "lan",
+            "mode": "mesh",
+            "mesh_id": "{{mesh_id}}",
+            "encryption": "sae",
+            "mesh_fwding": "1",
+            "mesh_rssi_threshold": "0",
+            "config_name": "wifi-iface",
+            "config_value": "wifinet0",
+            "device": "radio0",
+            "key": "{{mesh_password}}"
+        },
+        {
+            "config_name": "wifi-iface",
+            "config_value": "wifinet1",
+            "network": "lan",
+            "mode": "ap",
+            "ssid": "{{WiFi_ssid}}",
+            "encryption": "psk2",
+            "device": "radio0",
+            "key": "{{WiFi_password}}"
+        }
+    ]
+}
