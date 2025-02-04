@@ -1,0 +1,120 @@
+{
+    "system": [
+        {
+            "config_name": "system",
+            "config_value": "system",
+            "log_size": "64",
+            "urandom_seed": "0",
+            "hostname": "{{ host_name }}",
+            "ttylogin": "0",
+            "zonename": "Africa/Dakar",
+            "timezone": "GMT0"
+        }
+    ],
+    "network": [
+        {
+            "config_name": "interface",
+            "config_value": "lan",
+            "device": "br-lan",
+            "proto": "dhcp"
+        },
+        {
+            "config_name": "interface",
+            "config_value": "{{ wan_device }}",
+            "device": "eth0.2",
+            "proto": "dhcp"
+        }
+    ],
+    "dhcp": [
+        {
+            "config_name": "dhcp",
+            "config_value": "lan",
+            "interface": "lan",
+            "start": "100",
+            "limit": "150",
+            "leasetime": "12h",
+            "dhcpv4": "server",
+            "dhcpv6": "hybrid",
+            "ra": "hybrid",
+            "ra_flags": [
+                "managed-config",
+                "other-config"
+            ]
+        },
+        {
+            "config_name": "dhcp",
+            "config_value": "wan",
+            "interface": "wan",
+            "ignore": "1"
+        }
+    ],
+    "wireless": [
+        {
+            "config_name": "wifi-iface",
+            "config_value": "wifinet0",
+            "device": "radio0",
+            "encryption": "sae",
+            "key": "{{ password_mesh }}",
+            "mesh_fwding": "1",
+            "mesh_id": "{{ ssid_mesh }}",
+            "mesh_rssi_threshold": "0",
+            "mode": "mesh",
+            "network": "lan",
+            "disabled": "0"
+        },
+        {
+            "config_name": "wifi-iface",
+            "config_value": "wifinet1",
+            "device": "radio0",
+            "mode": "ap",
+            "ssid": "{{ ssid_wifi }}",
+            "encryption": "psk2",
+            "key": "{{ password_wifi }}",
+            "network": [
+                "lan"
+            ],
+            "disabled": "0"
+        }
+    ],
+    "firewall": [
+        {
+            "config_name": "defaults",
+            "output": "ACCEPT",
+            "input": "ACCEPT",
+            "forward": "ACCEPT",
+            "syn_flood": "1",
+            "config_value": "defaults"
+        },
+        {
+            "config_name": "zone",
+            "name": "lan",
+            "output": "ACCEPT",
+            "input": "ACCEPT",
+            "forward": "ACCEPT",
+            "network": [
+                "lan"
+            ],
+            "config_value": "zone1"
+        },
+        {
+            "config_name": "zone",
+            "name": "wan",
+            "output": "ACCEPT",
+            "input": "ACCEPT",
+            "forward": "REJECT",
+            "masq": "1",
+            "mtu_fix": "1",
+            "network": [
+                "wan"
+            ],
+            "config_value": "zone2"
+        }
+    ],
+    "files": [
+        {
+            "path": "/etc/openwisp/pre-reload-hook",
+            "mode": "0700",
+            "contents": "uci set wireless.radio0.channel=\"1\"\nuci set wireless.radio0.disabled='0'\nuci commit wireless\n\n# increase retries of the config test to account for\n# temporary network failures caused by the reloading of the wifi stack\nuci set openwisp.http.test_retries=8\nuci commit openwisp\n"
+        }
+    ]
+}
