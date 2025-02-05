@@ -17,7 +17,7 @@
       "device": "{{ wan_device }}",
       "proto": "dhcp",
       "ifname": "wan",
-      "peerdns": "0"
+      "peerdns": "1"
     }
   ],
   "dhcp": [
