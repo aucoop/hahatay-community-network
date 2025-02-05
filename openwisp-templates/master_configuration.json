@@ -9,7 +9,7 @@
       "netmask": "255.255.255.0",
       "ip6assign": "60",
       "delegate": "0",
-      "dns": ["{{ primary_dns_server }}", "192.168.10.5"],
+      "dns": ["{{ primary_dns_server }}", "{{ secondary_dns_server }}"],
       "ifname": "lan"
     },
     {
@@ -19,7 +19,7 @@
       "proto": "dhcp",
       "ifname": "wan",
       "peerdns": "0",
-      "dns": ["{{ primary_dns_server }}", "192.168.10.5"]
+      "dns": ["{{ primary_dns_server }}", "{{ secondary_dns_server }}"]
     }
   ],
   "dhcp": [
@@ -35,7 +35,7 @@
       "ra": "server",
       "ra_slaac": "1",
       "ra_flags": ["managed-config", "other-config"],
-      "dhcp_option": ["6,{{ primary_dns_server }},192.168.10.5"]
+      "dhcp_option": ["6,{{ primary_dns_server }},{{ secondary_dns_server }}"]
     },
     {
       "config_name": "dhcp",
@@ -45,7 +45,7 @@
       "start": "100",
       "limit": "150",
       "leasetime": "12h",
-      "dhcp_option": ["6,{{ primary_dns_server }},192.168.10.5"]
+      "dhcp_option": ["6,{{ primary_dns_server }},{{ secondary_dns_server }}"]
     }
   ],
   "wireless": [
